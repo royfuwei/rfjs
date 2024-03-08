@@ -88,8 +88,11 @@
     "packages/*"
   ],
   "dependencies": {
+    "@emotion/react": "^11.11.4",
+    "@emotion/styled": "^11.11.0",
     "@koa/bodyparser": "^5.0.0",
     "@koa/multer": "^3.0.2",
+    "@mui/material": "^5.15.12",
     "axios": "^1.6.7",
     "chalk": "^5.3.0",
     "class-transformer": "^0.5.1",
