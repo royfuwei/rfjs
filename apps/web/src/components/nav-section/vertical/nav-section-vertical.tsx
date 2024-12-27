@@ -12,6 +12,7 @@ function NavSectionVertical({ data, slotProps, ...other }: NavProps) {
           subheader={group.subheader}
           items={group.items}
           slotProps={slotProps}
+          onItemClick={group.onItemClick}
         />
       ))}
     </Stack>
@@ -20,7 +21,12 @@ function NavSectionVertical({ data, slotProps, ...other }: NavProps) {
 
 export default memo(NavSectionVertical);
 
-function Group({ subheader, items, slotProps }: Readonly<NavGroupProps>) {
+function Group({
+  subheader,
+  items,
+  slotProps,
+  onItemClick,
+}: Readonly<NavGroupProps>) {
   const renderContent = items.map((i) => (
     <NavList key={i.title} data={i} depth={1} slotProps={slotProps}></NavList>
   ));
@@ -46,7 +52,9 @@ function Group({ subheader, items, slotProps }: Readonly<NavGroupProps>) {
       >
         {subheader}
       </ListSubheader>
-      <Collapse in={true}>{renderContent}</Collapse>
+      <Collapse in={true} onClick={onItemClick}>
+        {renderContent}
+      </Collapse>
     </>
   );
 

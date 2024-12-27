@@ -50,12 +50,14 @@ export type NavGroupProps = {
   subheader?: string;
   items: NavItemBaseProps[];
   slotProps?: SlotProps;
+  onItemClick?: () => void;
 };
 
 export type NavProps = StackProps & {
   data: {
     subheader: string;
     items: NavItemBaseProps[];
+    onItemClick?: () => void;
   }[];
   slotProps?: SlotProps;
 };

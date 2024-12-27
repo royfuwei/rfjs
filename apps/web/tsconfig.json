@@ -30,7 +30,7 @@
     "../../dist/apps/web/.next/types/**/*.ts",
     "next-env.d.ts",
     ".next/types/**/*.ts"
-  ],
+, "src/components/cesium/kml.ts"  ],
   "exclude": [
     "node_modules",
     "jest.config.ts",

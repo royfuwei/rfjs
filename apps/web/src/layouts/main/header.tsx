@@ -18,7 +18,7 @@ import { useTheme } from '@mui/material/styles';
 import HeaderShadow from '../common/header-shadow';
 import SvgColor from '~rfjs/web/components/svg-color';
 import { RouterLink } from '~rfjs/web/routes/components';
-import { PATH_DASHBOARD } from '~rfjs/web/config-global';
+import { PATH_DASHBOARD, PATH_MAP4D } from '~rfjs/web/config-global';
 
 export default function Header() {
   const theme = useTheme();
@@ -58,6 +58,12 @@ export default function Header() {
     </IconButton>
   );
 
+  const globalButton = (
+    <IconButton component={RouterLink} href={PATH_MAP4D}>
+      <SvgColor src="/assets/icons/components/ic-extra-map.svg" />
+    </IconButton>
+  );
+
   const toolBarContainer = (
     <Container sx={{ height: 1, display: 'flex', alignItems: 'center' }}>
       {badgeLogo}
@@ -68,6 +74,7 @@ export default function Header() {
       </Box>
       <Stack alignItems={'center'} direction={'row'} spacing={2}>
         {mdUp && dashboardButton}
+        {mdUp && globalButton}
         <LoginButton />
       </Stack>
     </Container>

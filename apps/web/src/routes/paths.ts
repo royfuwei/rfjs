@@ -2,6 +2,7 @@ const ROOTS = {
   HOME: '/home',
   AUTH: '/auth',
   DASHBOARD: '/dashboard',
+  MAP4D: '/map4d',
 };
 
 export const paths = {
@@ -16,5 +17,8 @@ export const paths = {
   },
   dashboard: {
     root: ROOTS.DASHBOARD,
+  },
+  map4d: {
+    root: '/map4d',
   },
 };

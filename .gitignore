@@ -60,3 +60,6 @@ Thumbs.db
 logs/*
 
 schema.gql
+
+## Cesium
+apps/web/public/cesium
