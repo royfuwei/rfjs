@@ -10,6 +10,7 @@
 // import 'module-alias/register';
 import { FastifyServerManager, HttpRouteModule } from '@/infrastructures';
 import * as _indexHttpRouteModules from '@/delivery/http';
+import { getExDemoValue } from '@rfjs/utils';
 
 const main = async () => {
   const httpRouteModules = Object.values(
@@ -20,6 +21,8 @@ const main = async () => {
     httpRouteModules,
   });
 
+  const demo = getExDemoValue();
+  console.log('demo: ', demo);
   try {
     await serverManager.start();
   } catch (error) {

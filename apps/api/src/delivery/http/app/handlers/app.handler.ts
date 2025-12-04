@@ -1,3 +1,4 @@
+import { getExDemoValue } from '@rfjs/utils';
 import { RouteHandlerMethod } from 'fastify/types/route';
 
 export const getAppHandler: RouteHandlerMethod = async (req, reply) => {
@@ -7,4 +8,9 @@ export const getAppHandler: RouteHandlerMethod = async (req, reply) => {
 // eslint-disable-next-line @typescript-eslint/no-unused-vars
 export const testAppError: RouteHandlerMethod = async (req, reply) => {
   throw new Error('Test error');
+};
+
+export const getDemoDataHandler: RouteHandlerMethod = async (req, reply) => {
+  const data = getExDemoValue();
+  reply.send({ data });
 };

@@ -1,5 +1,5 @@
 import { RouteOptions } from 'fastify';
-import { getAppHandler, testAppError } from './handlers';
+import { getAppHandler, getDemoDataHandler, testAppError } from './handlers';
 
 const appRoute: RouteOptions = {
   method: 'GET',
@@ -19,4 +19,13 @@ const testAppErrorRoute: RouteOptions = {
   handler: testAppError,
 };
 
-export const appRoutes: RouteOptions[] = [appRoute, testAppErrorRoute];
+const getDemoDataRoute: RouteOptions = {
+  method: 'GET',
+  url: '/app/demo',
+  schema: {
+    tags: ['app'],
+  },
+  handler: getDemoDataHandler,
+};
+
+export const appRoutes: RouteOptions[] = [appRoute, testAppErrorRoute, getDemoDataRoute];
