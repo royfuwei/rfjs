@@ -16,6 +16,7 @@ export async function migrateToLatest(
 
   const migrator = new Migrator({
     db,
+    migrationTableSchema: schema,
     provider: {
       // eslint-disable-next-line @typescript-eslint/require-await
       async getMigrations() {
