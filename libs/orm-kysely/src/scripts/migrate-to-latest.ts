@@ -4,10 +4,15 @@ import { createDb } from '@/db';
 import { Database } from '@/database';
 import { migrations } from '@/migrations';
 
-export async function migrateToLatest(clientConfig: ClientConfig): Promise<void> {
+export async function migrateToLatest(
+  clientConfig: ClientConfig,
+  schema = 'public',
+): Promise<void> {
   await checkAndCreateDatabase(clientConfig);
 
-  const db = createDb<Database>(clientConfig);
+  const db = createDb<Database>(clientConfig, schema);
+
+  await db.schema.createSchema(schema).ifNotExists().execute();
 
   const migrator = new Migrator({
     db,
