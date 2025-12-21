@@ -17,7 +17,6 @@ const main = async () => {
   console.log(`NODE_ENV: ${configs.env}`);
   console.log(`${demoValue}!!`);
   await new Promise((resolve) => setTimeout(resolve, 5000));
-  console.log('Hello, World!');
 
   const closeProcesses = (code = 1) => {
     process.exit(code);

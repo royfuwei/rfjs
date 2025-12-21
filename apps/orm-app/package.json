@@ -10,6 +10,7 @@
     "dev:tsc": "NODE_ENV=local npm run build:tsc:watch -- --onSuccess \"npm start\"",
     "tsx": "npx cross-env NODE_ENV=local npx tsx src/main.ts",
     "tsx:watch": "npx cross-env NODE_ENV=local npx tsx watch src/main.ts",
+    "migrate": "npx tsx src/scripts/migrate.ts",
     "start": "node dist/main.js",
     "start:watch1": "npx nodemon dist/main.js",
     "start:watch": "npx nodemon --ext js --exec \"node dist/main.js\"",
@@ -67,6 +68,7 @@
     "@commitlint/cz-commitlint": "^19.6.1",
     "@eslint/js": "^9.20.0",
     "@types/dotenv-flow": "^3.3.3",
+    "@types/pg": "^8.16.0",
     "@types/supertest": "^6.0.2",
     "@vitest/coverage-istanbul": "^3.2.3",
     "@vitest/ui": "^3.2.3",
@@ -77,6 +79,7 @@
     "husky": "^9.1.7",
     "inquirer": "9",
     "lint-staged": "^15.4.3",
+    "pg": "^8.16.3",
     "prettier": "^3.5.1",
     "rimraf": "^6.0.1",
     "supertest": "^7.0.0",
@@ -88,6 +91,7 @@
     "vitest": "^3.2.3"
   },
   "dependencies": {
+    "@rfjs/orm-kysely": "workspace:*",
     "dotenv-flow": "^4.1.0"
   }
 }
