@@ -22,6 +22,7 @@ const configs = {
   env: process.env.NODE_ENV,
   tz: process.env.TZ,
   name: process.env.APP_NAME,
+  schema: process.env.DATABASE_SCHEMA,
   dbConfig,
 };
 

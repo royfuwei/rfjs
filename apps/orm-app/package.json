@@ -10,7 +10,7 @@
     "dev:tsc": "NODE_ENV=local npm run build:tsc:watch -- --onSuccess \"npm start\"",
     "tsx": "npx cross-env NODE_ENV=local npx tsx src/main.ts",
     "tsx:watch": "npx cross-env NODE_ENV=local npx tsx watch src/main.ts",
-    "migrate": "npx tsx src/scripts/migrate.ts",
+    "migrate:kysely": "npx cross-env NODE_OPTIONS=--enable-source-maps npx tsx src/scripts/kysely-migrate.ts",
     "start": "node dist/main.js",
     "start:watch1": "npx nodemon dist/main.js",
     "start:watch": "npx nodemon --ext js --exec \"node dist/main.js\"",
