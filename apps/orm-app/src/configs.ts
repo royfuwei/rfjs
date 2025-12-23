@@ -24,6 +24,7 @@ const configs = {
   name: process.env.APP_NAME,
   schema: process.env.DATABASE_SCHEMA,
   dbConfig,
+  dbUrl: process.env.DATABASE_URL,
 };
 
 export { configs };

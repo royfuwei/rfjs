@@ -23,10 +23,12 @@ export default defineConfig({
   // 一次出 ESM + CJS（取代你原本兩個 esbuild.build）
   format: ['esm', 'cjs'],
 
+  fixedExtension: false,
+
   treeshake: true,
 
   // 對應原本 platform: 'neutral'
-  platform: 'neutral',
+  platform: 'node',
 
   // 你原本沒設 target，就給個合理的預設
   target: 'es2023',
@@ -38,12 +40,6 @@ export default defineConfig({
   clean: true,
 
   // .d.ts 生成：
-  // - 若 package.json 有 "types" 或 exports.types，預設會自動開啟 dts
-  // - 為了明確，這邊直接打開
-  dts: {
-    // 使用 Oxc backend，速度比較快（需要 tsconfig 裡有 isolatedDeclarations 會更爽）:contentReference[oaicite:1]{index=1}
-    oxc: true,
-  },
   plugins: [
     tsdownCopyPackageJsonPlugin({
       distDir: 'dist',

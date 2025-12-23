@@ -92,6 +92,7 @@
   },
   "dependencies": {
     "@rfjs/orm-kysely": "workspace:*",
+    "@rfjs/orm-prisma": "workspace:*",
     "dotenv-flow": "^4.1.0"
   }
 }
