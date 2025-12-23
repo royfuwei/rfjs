@@ -14,6 +14,7 @@
     "declaration": true,
     "declarationMap": true,
     "declarationDir": "types",
+    "useDefineForClassFields": false,
     "emitDeclarationOnly": false,
     "outDir": "dist",
     "sourceMap": true,

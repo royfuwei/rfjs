@@ -11,6 +11,7 @@
     "tsx": "npx cross-env NODE_ENV=local npx tsx src/main.ts",
     "tsx:watch": "npx cross-env NODE_ENV=local npx tsx watch src/main.ts",
     "migrate:kysely": "npx cross-env NODE_OPTIONS=--enable-source-maps npx tsx src/scripts/kysely-migrate.ts",
+    "migrate:typeorm": "npx cross-env NODE_OPTIONS=--enable-source-maps npx tsx src/scripts/typeorm-migrate.ts",
     "start": "node dist/main.js",
     "start:watch1": "npx nodemon dist/main.js",
     "start:watch": "npx nodemon --ext js --exec \"node dist/main.js\"",
@@ -93,6 +94,7 @@
   "dependencies": {
     "@rfjs/orm-kysely": "workspace:*",
     "@rfjs/orm-prisma": "workspace:*",
+    "@rfjs/orm-typeorm": "workspace:*",
     "dotenv-flow": "^4.1.0"
   }
 }
