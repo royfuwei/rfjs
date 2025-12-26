@@ -5,22 +5,33 @@ import {
   PrimaryGeneratedColumn,
   UpdateDateColumn,
 } from 'typeorm';
+import { EnumContentType } from './types';
+import { SCHEMA } from '@/consts';
 
 @Entity({
   name: 'todo',
-  schema: 'typeorm',
+  schema: SCHEMA,
 })
-export default class Todo {
+export class TodoEntity {
   @PrimaryGeneratedColumn()
   id!: number;
 
   @Column({
+    type: 'varchar',
     nullable: false,
     length: 100,
   })
   content!: string;
 
-  @Column()
+  @Column({
+    type: 'varchar',
+    enum: EnumContentType,
+    nullable: false,
+    length: 100,
+  })
+  content_type!: EnumContentType;
+
+  @Column({ type: 'boolean' })
   complete!: boolean;
 
   @CreateDateColumn()
