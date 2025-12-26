@@ -1,27 +1,16 @@
 import { ClientConfig, Client } from 'pg';
 import { createDb } from '@/db';
+import { DbConfig } from '@/type';
 
-export async function migrateToLatest(
-  clientConfig: ClientConfig,
-  // eslint-disable-next-line @typescript-eslint/no-unused-vars
-  schema = 'public',
-): Promise<void> {
-  await checkAndCreateDatabase(clientConfig);
+export async function migrateToLatest(dbConfig: DbConfig): Promise<void> {
+  await checkAndCreateDatabase(dbConfig);
 
-  // Map ClientConfig to DbConfig
-  // Ensure required fields are present or provide defaults/throw error
-  const dbConfig = {
-    host: clientConfig.host || 'localhost',
-    port: clientConfig.port || 5432,
-    database: clientConfig.database || 'postgres',
-    username: clientConfig.user || 'postgres',
-    password: (clientConfig.password as string) || '',
-    synchronize: false, // We want to run migrations explicitly
-    logging: true,
+  const config: DbConfig = {
+    ...dbConfig,
     applicationName: 'migration-script',
   };
 
-  const dataSource = createDb(dbConfig);
+  const dataSource = createDb(config);
 
   try {
     await dataSource.initialize();

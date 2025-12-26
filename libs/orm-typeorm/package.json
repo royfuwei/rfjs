@@ -16,6 +16,11 @@
     "build:tsdown": "npm run clean && tsdown --config-loader unrun",
     "typecheck": "tsc --noEmit",
     "typecheck:watch": "tsc --noEmit --watch",
+    "migration:run": "tsx src/run-migration.ts",
+    "migration:generate": "typeorm-ts-node-commonjs migration:generate -d src/ormconfig.ts",
+    "migration:revert": "typeorm-ts-node-commonjs migration:revert -d src/ormconfig.ts",
+    "migration:create": "typeorm-ts-node-commonjs migration:create",
+    "schema:drop": "typeorm-ts-node-commonjs schema:drop -d src/ormconfig.ts",
     "lint-staged": "npx lint-staged",
     "lint": "eslint \"{src,apps,libs,test}/**/*.ts\"",
     "lint:fix": "eslint \"{src,apps,libs,test}/**/*.ts\" --fix",
@@ -78,6 +83,7 @@
     "vitest": "^3.2.3"
   },
   "dependencies": {
+    "dotenv": "^17.2.3",
     "pg": "^8.16.3",
     "reflect-metadata": "^0.2.2",
     "tslib": "^2.8.1",
