@@ -23,8 +23,13 @@ const configs = {
   tz: process.env.TZ,
   name: process.env.APP_NAME,
   schema: process.env.DATABASE_SCHEMA,
-  dbConfig,
   dbUrl: process.env.DATABASE_URL,
+  dbConfig,
+  database: {
+    schema: process.env.DATABASE_SCHEMA,
+    url: process.env.DATABASE_URL,
+    log: process.env.DATABASE_LOGGING === 'true',
+  },
 };
 
 export { configs };
