@@ -1,7 +1,6 @@
 import { Migrator } from 'kysely';
 import { ClientConfig, Client } from 'pg';
 import { createDb } from '@/db';
-import { Database } from '@/database';
 import { migrations } from '@/migrations';
 
 export async function migrateToLatest(
@@ -10,7 +9,7 @@ export async function migrateToLatest(
 ): Promise<void> {
   await checkAndCreateDatabase(clientConfig);
 
-  const db = createDb<Database>(clientConfig, schema);
+  const db = createDb(clientConfig, schema);
 
   await db.schema.createSchema(schema).ifNotExists().execute();
 
