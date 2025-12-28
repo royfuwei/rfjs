@@ -1,7 +1,7 @@
 import { createDb } from '@rfjs/orm-prisma';
 import { configs } from '@/configs';
 
-export const init = async () => {
+export const initPrisma = async () => {
   console.log('Initializing Prisma...');
   console.log('db url: ', configs.dbUrl);
   const prisma = createDb(configs.dbUrl ?? '');

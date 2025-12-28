@@ -1,4 +1,4 @@
-import { createDb, DbConfig } from '@rfjs/orm-typeorm';
+import { createDb, DbConfig, Repository, TodoEntity } from '@rfjs/orm-typeorm';
 import { dbConfig, configs } from '@/configs';
 
 export const initDataSource = async () => {
@@ -20,3 +20,10 @@ export const initDataSource = async () => {
   await dataSource.initialize();
   return dataSource;
 };
+
+export async function _testDataSource(): Promise<void> {
+  const dataSource = await initDataSource();
+  const repo: Repository<TodoEntity> = dataSource.getRepository(TodoEntity);
+  const data = await repo.find();
+  console.log('data: ', data);
+}
