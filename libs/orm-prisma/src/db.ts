@@ -1,17 +1,17 @@
+import { Pool } from 'pg';
 import { PrismaPg } from '@prisma/adapter-pg';
 import { PrismaClient } from '../prisma/generated/client';
 
-export function createDb(connectionString: string) {
-  const adapter = new PrismaPg({
-    connectionString,
-  });
+export function createDb(connectionString: string): {
+  client: Pool;
+  db: PrismaClient;
+} {
+  const pool = new Pool({ connectionString });
+  const adapter = new PrismaPg(pool);
+  const prisma = new PrismaClient({ adapter });
 
-  const globalForPrisma = global as unknown as { prisma: PrismaClient };
-
-  const prisma =
-    globalForPrisma.prisma ||
-    new PrismaClient({
-      adapter,
-    });
-  return prisma;
+  return {
+    client: pool,
+    db: prisma,
+  };
 }
