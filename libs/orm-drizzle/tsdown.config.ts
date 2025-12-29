@@ -41,8 +41,9 @@ export default defineConfig({
   // - 若 package.json 有 "types" 或 exports.types，預設會自動開啟 dts
   // - 為了明確，這邊直接打開
   dts: {
-    // 使用 Oxc backend，速度比較快（需要 tsconfig 裡有 isolatedDeclarations 會更爽）:contentReference[oaicite:1]{index=1}
-    oxc: true,
+    // 使用 Oxc backend，速度比較快（需要 tsconfig 裡有 isolatedDeclarations 會更爽）
+    // 關閉 oxc 以避免 drizzle-orm 的 pgTable 型別推斷問題
+    oxc: false,
   },
   plugins: [
     tsdownCopyPackageJsonPlugin({
