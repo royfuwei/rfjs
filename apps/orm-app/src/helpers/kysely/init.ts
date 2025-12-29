@@ -1,9 +1,9 @@
-import { configs, dbConfig } from '@/configs';
+import { configs } from '@/configs';
 import { createDb } from '@rfjs/orm-kysely';
 
 export const initKysely = () => {
   console.log('Initializing Kysely...');
-  const kysely = createDb(dbConfig, configs.database.schema);
+  const { db: kysely } = createDb(configs.dbUrl ?? '');
   return kysely;
 };
 
