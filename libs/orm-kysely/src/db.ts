@@ -1,16 +1,23 @@
 // db.ts
 import { Kysely, PostgresDialect } from 'kysely';
-import { ClientConfig, Pool } from 'pg';
+import { Pool } from 'pg';
 import { Database } from './database';
 
-export function createDb(
-  clientConfig: ClientConfig,
-  schema = 'public',
-): Kysely<Database> {
+export function createDb(connectionString: string): {
+  client: Pool;
+  db: Kysely<Database>;
+} {
+  const pool = new Pool({
+    connectionString,
+  });
+
   const dialect = new PostgresDialect({
-    pool: new Pool(clientConfig),
+    pool,
   });
 
   const db = new Kysely<Database>({ dialect });
-  return db.withSchema(schema);
+  return {
+    client: pool,
+    db: db.withSchema('public'),
+  };
 }

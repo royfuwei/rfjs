@@ -1,15 +1,16 @@
 import { Migrator } from 'kysely';
-import { ClientConfig, Client } from 'pg';
+import { Client, ClientConfig } from 'pg';
+import { parse } from 'pg-connection-string';
 import { createDb } from '@/db';
 import { migrations } from '@/migrations';
 
 export async function migrateToLatest(
-  clientConfig: ClientConfig,
+  connectionString: string,
   schema = 'public',
 ): Promise<void> {
-  await checkAndCreateDatabase(clientConfig);
+  await checkAndCreateDatabase(connectionString);
 
-  const db = createDb(clientConfig, schema);
+  const { db } = createDb(connectionString);
 
   await db.schema.createSchema(schema).ifNotExists().execute();
 
@@ -43,15 +44,23 @@ export async function migrateToLatest(
   await db.destroy();
 }
 
-async function checkAndCreateDatabase(clientConfig: ClientConfig) {
-  const { database, ...config } = clientConfig;
+async function checkAndCreateDatabase(connectionString: string) {
+  // Extract database name from connection string
+  const config = parse(connectionString);
+  const database = config.database;
+
   if (!database) return;
 
-  // Connect to default 'postgres' database to check/create target DB
-  const client = new Client({
-    ...config,
-    database: 'postgres',
-  });
+  // Construct connection string for default 'postgres' database
+  // We need to remove the database name from the config or replace it
+  const postgresConfig = { ...config, database: 'postgres' };
+  // pg-connection-string parse returns ConnectionOptions, but Client takes ConnectionConfig or string.
+  // pg Client config accepts most of what parse returns.
+  // However, parse returns some fields as strings that might need to be numbers (port).
+  // pg Client is flexible.
+  // Using the object config directly with pg Client.
+
+  const client = new Client(postgresConfig as ClientConfig);
 
   try {
     await client.connect();
@@ -62,16 +71,13 @@ async function checkAndCreateDatabase(clientConfig: ClientConfig) {
 
     if (res.rowCount === 0) {
       console.log(`Database "${database}" does not exist. Creating...`);
-      // CREATE DATABASE cannot run in a transaction block, and parameters are not allowed for identifiers
-      // We must sanitize or trust the input. Since this is a dev tool, we assume 'database' is safe-ish,
-      // but ideally we should quote it properly.
+      // CREATE DATABASE cannot run in a transaction block
       await client.query(`CREATE DATABASE "${database}"`);
       console.log(`Database "${database}" created successfully.`);
     }
   } catch (error) {
     // eslint-disable-next-line @typescript-eslint/restrict-template-expressions
     console.warn(`Warning: Failed to ensure database exists: ${error}`);
-    // Don't exit, let the potential connection error handle it or succeed if it was a race condition
   } finally {
     await client.end();
   }
