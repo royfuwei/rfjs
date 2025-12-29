@@ -397,6 +397,9 @@ importers:
       '@types/pg':
         specifier: ^8.16.0
         version: 8.16.0
+      '@types/pg-connection-string':
+        specifier: ^2.0.0
+        version: 2.0.0
       '@types/supertest':
         specifier: ^6.0.2
         version: 6.0.3
@@ -427,6 +430,9 @@ importers:
       lint-staged:
         specifier: ^15.4.3
         version: 15.5.2
+      pg-connection-string:
+        specifier: ^2.9.1
+        version: 2.9.1
       prettier:
         specifier: ^3.5.1
         version: 3.5.3
@@ -585,6 +591,9 @@ importers:
       '@types/pg':
         specifier: ^8.16.0
         version: 8.16.0
+      '@types/pg-connection-string':
+        specifier: ^2.0.0
+        version: 2.0.0
       '@types/supertest':
         specifier: ^6.0.2
         version: 6.0.3
@@ -615,6 +624,9 @@ importers:
       lint-staged:
         specifier: ^15.4.3
         version: 15.5.2
+      pg-connection-string:
+        specifier: ^2.9.1
+        version: 2.9.1
       prettier:
         specifier: ^3.5.1
         version: 3.5.3
@@ -2576,6 +2588,10 @@ packages:
 
   '@types/node@24.0.3':
     resolution: {integrity: sha512-R4I/kzCYAdRLzfiCabn9hxWfbuHS573x+r0dJMkkzThEa7pbrcDWK+9zu3e7aBOouf+rQAciqPFMnxwr0aWgKg==}
+
+  '@types/pg-connection-string@2.0.0':
+    resolution: {integrity: sha512-J1ZxH9dN0zSwnJpAlbvRlEtwYD/SYmyLMVF4DF0qfTHv0sH0HEg9WK/B24doWGjgcT8InomL0znJwcYHy3lNUw==}
+    deprecated: This is a stub types definition for pg-connection-string (https://github.com/iceddev/pg-connection-string). pg-connection-string provides its own type definitions, so you don't need @types/pg-connection-string installed!
 
   '@types/pg@8.16.0':
     resolution: {integrity: sha512-RmhMd/wD+CF8Dfo+cVIy3RR5cl8CyfXQ0tGgW6XBL8L4LM/UTEbNXYRbLwU6w+CgrKBNbrQWt4FUtTfaU5jSYQ==}
@@ -8132,6 +8148,10 @@ snapshots:
   '@types/node@24.0.3':
     dependencies:
       undici-types: 7.8.0
+
+  '@types/pg-connection-string@2.0.0':
+    dependencies:
+      pg-connection-string: 2.9.1
 
   '@types/pg@8.16.0':
     dependencies:
