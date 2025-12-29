@@ -92,6 +92,7 @@
     "vitest": "^3.2.3"
   },
   "dependencies": {
+    "@rfjs/orm-drizzle": "workspace:*",
     "@rfjs/orm-kysely": "workspace:*",
     "@rfjs/orm-prisma": "workspace:*",
     "@rfjs/orm-typeorm": "workspace:*",
