@@ -1,84 +1,73 @@
 import { Migrator } from 'kysely';
-import { Client, ClientConfig } from 'pg';
-import { parse } from 'pg-connection-string';
 import { createDb } from '@/db';
 import { migrations } from '@/migrations';
+import { MigrateToLatestParams } from '@/type';
+import { SCHEMA } from '@/consts';
+import { checkAndCreateDB, checkAndCreateSchema } from '@/scripts';
+import { getConnectionStringInfo } from '@/utils';
 
-export async function migrateToLatest(
-  connectionString: string,
-  schema = 'public',
-): Promise<void> {
-  await checkAndCreateDatabase(connectionString);
+export async function migrateToLatest(params: MigrateToLatestParams): Promise<void> {
+  const { connectionString, schema = SCHEMA, migrationsSchema } = params;
+  const { finalConnectionString, finalSchema, optionsSchemas } = getConnectionStringInfo(
+    connectionString,
+    schema,
+  );
+  // Use pg-connection-string for more robust parsing and to generate admin connection string
+  // Default fallback
+  const schemas: Set<string> = new Set();
+  // -csearch_path=
 
-  const { db } = createDb(connectionString);
+  schemas.add(finalSchema);
+  optionsSchemas.forEach((i) => schemas.add(i));
+  console.log('Get schemas: ', Array.from(schemas.values()));
 
-  await db.schema.createSchema(schema).ifNotExists().execute();
-
-  const migrator = new Migrator({
-    db,
-    migrationTableSchema: schema,
-    provider: {
-      // eslint-disable-next-line @typescript-eslint/require-await
-      async getMigrations() {
-        return migrations;
-      },
-    },
-  });
-
-  const { error, results } = await migrator.migrateToLatest();
-
-  results?.forEach((it) => {
-    if (it.status === 'Success') {
-      console.log(`migration "${it.migrationName}" was executed successfully`);
-    } else if (it.status === 'Error') {
-      console.error(`failed to execute migration "${it.migrationName}"`);
-    }
-  });
-
-  if (error) {
-    console.error('failed to migrate');
-    console.error(error);
-    process.exit(1);
+  await checkAndCreateDB(finalConnectionString);
+  await checkAndCreateSchema(finalConnectionString, Array.from(schemas.values()));
+  if (migrationsSchema) {
+    await checkAndCreateSchema(finalConnectionString, [migrationsSchema]);
   }
 
-  await db.destroy();
+  const finalMigrationSchema = migrationsSchema || finalSchema;
+  console.log('finalMigrationSchema: ', finalMigrationSchema);
+  await runMigrations(finalConnectionString, finalMigrationSchema);
 }
 
-async function checkAndCreateDatabase(connectionString: string) {
-  // Extract database name from connection string
-  const config = parse(connectionString);
-  const database = config.database;
-
-  if (!database) return;
-
-  // Construct connection string for default 'postgres' database
-  // We need to remove the database name from the config or replace it
-  const postgresConfig = { ...config, database: 'postgres' };
-  // pg-connection-string parse returns ConnectionOptions, but Client takes ConnectionConfig or string.
-  // pg Client config accepts most of what parse returns.
-  // However, parse returns some fields as strings that might need to be numbers (port).
-  // pg Client is flexible.
-  // Using the object config directly with pg Client.
-
-  const client = new Client(postgresConfig as ClientConfig);
+async function runMigrations(
+  connectionString: string,
+  finalMigrationSchema: string,
+): Promise<void> {
+  const { db } = createDb(connectionString);
 
   try {
-    await client.connect();
-    // Check if database exists
-    const res = await client.query(`SELECT 1 FROM pg_database WHERE datname = $1`, [
-      database,
-    ]);
+    const migrator = new Migrator({
+      db,
+      migrationTableSchema: finalMigrationSchema,
+      provider: {
+        // eslint-disable-next-line @typescript-eslint/require-await
+        async getMigrations() {
+          return migrations;
+        },
+      },
+    });
 
-    if (res.rowCount === 0) {
-      console.log(`Database "${database}" does not exist. Creating...`);
-      // CREATE DATABASE cannot run in a transaction block
-      await client.query(`CREATE DATABASE "${database}"`);
-      console.log(`Database "${database}" created successfully.`);
+    const { error, results } = await migrator.migrateToLatest();
+
+    results?.forEach((it) => {
+      if (it.status === 'Success') {
+        console.log(`migration "${it.migrationName}" was executed successfully`);
+      } else if (it.status === 'Error') {
+        console.error(`failed to execute migration "${it.migrationName}"`);
+      }
+    });
+
+    if (error) {
+      throw error;
     }
-  } catch (error) {
-    // eslint-disable-next-line @typescript-eslint/restrict-template-expressions
-    console.warn(`Warning: Failed to ensure database exists: ${error}`);
+  } catch (e) {
+    console.error('failed to migrate');
+    console.error(e);
+    process.exit(1);
   } finally {
-    await client.end();
+    await db.destroy();
   }
 }

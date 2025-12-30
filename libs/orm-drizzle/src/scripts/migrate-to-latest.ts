@@ -1,70 +1,66 @@
 import { migrate } from 'drizzle-orm/node-postgres/migrator';
-import { Client } from 'pg';
-import * as dotenv from 'dotenv';
 import { createDb } from '@/db';
+import { checkAndCreateDB } from './check-and-create-db';
+import { checkAndCreateSchema } from './check-and-create-schema';
+import { SCHEMA } from '@/consts';
+import { getConnectionStringInfo } from '@/utils';
+import { MigrateToLatestParams } from '@/type';
 
-dotenv.config();
+export async function migrateToLatest(params: MigrateToLatestParams): Promise<void> {
+  const {
+    connectionString,
+    schema = SCHEMA,
+    migrationsSchema,
+    migrationsFolder,
+  } = params;
+  const { finalConnectionString, finalSchema, optionsSchemas } = getConnectionStringInfo(
+    connectionString,
+    schema,
+  );
+  const schemas: Set<string> = new Set();
 
-async function checkAndCreateDB(adminConnectionString: string, targetDb: string) {
-  const client = new Client({
-    connectionString: adminConnectionString,
-  });
+  schemas.add(finalSchema);
+  optionsSchemas.forEach((i) => schemas.add(i));
+  console.log('Get schemas: ', Array.from(schemas.values()));
 
-  try {
-    await client.connect();
-    const res = await client.query(`SELECT 1 FROM pg_database WHERE datname = $1`, [
-      targetDb,
-    ]);
-
-    if (res.rowCount === 0) {
-      console.log(`Database "${targetDb}" does not exist. Creating...`);
-      await client.query(`CREATE DATABASE "${targetDb}"`);
-      console.log(`Database "${targetDb}" created successfully.`);
-    }
-  } catch (error) {
-    // eslint-disable-next-line @typescript-eslint/restrict-template-expressions
-    console.warn(`Warning: Failed to ensure database exists: ${error}`);
-  } finally {
-    await client.end();
+  await checkAndCreateDB(finalConnectionString);
+  await checkAndCreateSchema(finalConnectionString, Array.from(schemas.values()));
+  if (migrationsSchema) {
+    await checkAndCreateSchema(finalConnectionString, [migrationsSchema]);
   }
+
+  const finalMigrationSchema = migrationsSchema || finalSchema;
+  console.log('finalMigrationSchema: ', finalMigrationSchema);
+  await runMigrations(finalConnectionString, finalMigrationSchema, migrationsFolder);
 }
 
-async function main() {
-  const connectionString = process.env.DATABASE_URL;
-  if (!connectionString) {
-    throw new Error('DATABASE_URL is not defined');
-  }
-
-  // Use URL object for more robust parsing and to generate admin connection string
-  let targetDb = 'orm'; // Default fallback
+async function runMigrations(
+  connectionString: string,
+  migrationsSchema: string,
+  migrationsFolder = 'drizzle',
+) {
+  const { pool, db } = createDb(connectionString);
+  let isConnected = false;
   try {
-    const url = new URL(connectionString);
-    targetDb = url.pathname.slice(1); // Remove leading slash
+    await pool.connect();
+    isConnected = true;
 
-    // Create admin connection string pointing to 'postgres' database
-    url.pathname = '/postgres';
-    const adminConnectionString = url.toString();
+    console.log('Running migrations...');
+    console.log('migrationsSchema: ', migrationsSchema);
+    await migrate(db, {
+      migrationsFolder,
+      migrationsSchema,
+    });
+    console.log('Migrations completed successfully.');
 
-    await checkAndCreateDB(adminConnectionString, targetDb);
+    await pool.end();
   } catch (e) {
-    console.warn(
-      'Could not parse DATABASE_URL to create admin connection. Skipping auto-creation.',
-      e,
-    );
+    console.error('Migration failed!');
+    console.error(e);
+    throw e;
+  } finally {
+    if (isConnected) {
+      await pool.end();
+    }
   }
-
-  const { client, db } = createDb(connectionString);
-  await client.connect();
-
-  console.log('Running migrations...');
-  await migrate(db, { migrationsFolder: 'drizzle' });
-  console.log('Migrations completed successfully.');
-
-  await client.end();
 }
-
-main().catch((err) => {
-  console.error('Migration failed!');
-  console.error(err);
-  process.exit(1);
-});
