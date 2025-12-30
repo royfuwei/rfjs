@@ -3,14 +3,15 @@ import {
   CreateDateColumn,
   Entity,
   PrimaryGeneratedColumn,
+  QueryDeepPartialEntity,
   UpdateDateColumn,
 } from 'typeorm';
-import { EnumContentType } from './types';
-import { SCHEMA } from '@/consts';
+// import { EnumContentType } from './types';
+
+export type TodoEntityInsert = QueryDeepPartialEntity<TodoEntity>;
 
 @Entity({
   name: 'todo',
-  schema: SCHEMA,
 })
 export class TodoEntity {
   @PrimaryGeneratedColumn()
@@ -23,13 +24,13 @@ export class TodoEntity {
   })
   content!: string;
 
-  @Column({
-    type: 'varchar',
-    enum: EnumContentType,
-    nullable: false,
-    length: 100,
-  })
-  content_type!: EnumContentType;
+  // @Column({
+  //   type: 'varchar',
+  //   enum: EnumContentType,
+  //   nullable: false,
+  //   length: 100,
+  // })
+  // contentType!: EnumContentType;
 
   @Column({ type: 'boolean' })
   complete!: boolean;
