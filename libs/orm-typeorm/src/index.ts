@@ -1,6 +1,7 @@
 export * from './db';
 export * from './entities';
 export * from './migrations';
-export * from './scripts/migrate-to-latest';
+export * from './scripts';
 export * from './utils';
 export * from './type';
+export type * from 'typeorm';

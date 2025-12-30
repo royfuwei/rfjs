@@ -1,4 +1,5 @@
 import { configs } from '@/configs';
+import { migrateDrizzle } from '@/scripts/migrate-drizzle';
 import { createDb, usersTable } from '@rfjs/orm-drizzle';
 
 export const initDrizzle = () => {
@@ -13,11 +14,12 @@ export const initDrizzle = () => {
 
 export const _testInitDrizzle = async () => {
   try {
-    const { db, client } = initDrizzle();
-    await client.connect();
+    await migrateDrizzle();
+    const { db, pool } = initDrizzle();
+    await pool.connect();
     const allUsers = await db.select().from(usersTable).execute();
     console.log('Drizzle users:', allUsers);
-    await client.end();
+    await pool.end();
   } catch (e) {
     console.error('Drizzle init failed:', e);
   }

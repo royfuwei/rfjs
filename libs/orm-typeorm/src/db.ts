@@ -1,23 +1,33 @@
 import { DataSource } from 'typeorm';
 import * as entities from './entities';
 import * as migrations from './migrations';
+import { getConnectionStringInfo } from './utils';
 
-export const createDb = (
-  connectionString: string,
-): {
-  client: DataSource;
-  db: DataSource;
-} => {
+type Ctor<T = any> = new (...args: any[]) => T;
+
+export function createDb(connectionString: string, targetSchema?: string) {
+  const { finalConnectionString, hasSearchPath } = getConnectionStringInfo(
+    connectionString,
+    targetSchema,
+  );
+
+  const entityClasses = (Object.values(entities) as unknown[]).filter(
+    (v): v is Ctor => typeof v === 'function',
+  );
+
+  const migrationClasses = (Object.values(migrations) as unknown[]).filter(
+    // eslint-disable-next-line @typescript-eslint/no-unsafe-function-type
+    (v): v is Function => typeof v === 'function',
+  );
+
   const dataSource = new DataSource({
     type: 'postgres',
-    url: connectionString,
+    url: finalConnectionString,
     synchronize: false,
     logging: false,
-    entities: Object.values(entities),
-    migrations: Object.values(migrations),
+    entities: entityClasses,
+    migrations: migrationClasses,
   });
-  return {
-    client: dataSource,
-    db: dataSource,
-  };
-};
+
+  return { db: dataSource, hasSearchPath };
+}
