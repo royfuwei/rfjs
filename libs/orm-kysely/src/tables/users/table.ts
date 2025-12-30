@@ -2,8 +2,7 @@ import { Generated, Insertable, Selectable, Updateable } from 'kysely';
 
 export interface UserTable {
   user_id: Generated<string>;
-  first_name: string | null;
-  last_name: string | null;
+  name: string | null;
   email: string | null;
   created_at: Generated<Date>;
 }

@@ -9,8 +9,8 @@ export async function up(db: Kysely<any>): Promise<void> {
     .addColumn('user_id', 'uuid', (col) =>
       col.references('user.user_id').notNull().onDelete('cascade'),
     )
-    .addColumn('last_refreshed_at', 'timestamp', (col) => col.notNull())
-    .addColumn('created_at', 'timestamp', (col) => col.notNull().defaultTo(sql`NOW()`))
+    .addColumn('last_refreshed_at', 'timestamptz', (col) => col.notNull())
+    .addColumn('created_at', 'timestamptz', (col) => col.notNull().defaultTo(sql`NOW()`))
     .execute();
 
   await db.schema

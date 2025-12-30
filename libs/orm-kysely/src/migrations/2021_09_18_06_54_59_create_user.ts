@@ -6,10 +6,10 @@ export async function up(db: Kysely<any>): Promise<void> {
     .addColumn('user_id', 'uuid', (col) =>
       col.primaryKey().defaultTo(sql`gen_random_uuid()`),
     )
-    .addColumn('first_name', 'text')
-    .addColumn('last_name', 'text')
-    .addColumn('email', 'text', (col) => col.unique())
-    .addColumn('created_at', 'timestamp', (col) => col.defaultTo(sql`NOW()`))
+    .addColumn('name', 'text')
+    // .addColumn('email', 'text', (col) => col.unique())
+    .addColumn('email', 'text')
+    .addColumn('created_at', 'timestamptz', (col) => col.defaultTo(sql`NOW()`))
     .execute();
 }
 
