@@ -16,8 +16,9 @@
     "build:tsdown": "npm run clean && tsdown --config-loader unrun",
     "typecheck": "tsc --noEmit",
     "typecheck:watch": "tsc --noEmit --watch",
-    "migrate": "pnpm gen:migrations-index && tsx src/scripts/migrate-to-latest.ts",
-    "gen:migrations-index": "tsx src/scripts/gen-migrations-index.ts",
+    "gen:migrations-index": "tsx scripts/gen-migrations-index.ts",
+    "migrate": "pnpm gen:migrations-index && npx tsx scripts/migrate.ts",
+    "seed": "npx tsx scripts/seed.ts",
     "check:migrations-index": "pnpm gen:migrations-index && git diff --exit-code src/migrations/index.ts",
     "lint-staged": "npx lint-staged",
     "lint": "eslint \"{src,apps,libs,test}/**/*.ts\"",
@@ -80,6 +81,7 @@
     "vitest": "^3.2.3"
   },
   "dependencies": {
+    "dotenv": "^17.2.3",
     "kysely": "^0.28.9",
     "pg": "^8.16.3",
     "tslib": "^2.8.1"
