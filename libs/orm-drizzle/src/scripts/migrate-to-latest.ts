@@ -1,5 +1,5 @@
 import { migrate } from 'drizzle-orm/node-postgres/migrator';
-import { createDb } from '@/db';
+import { createDbByClient } from '@/db';
 import { checkAndCreateDB } from './check-and-create-db';
 import { checkAndCreateSchema } from './check-and-create-schema';
 import { SCHEMA } from '@/consts';
@@ -38,11 +38,11 @@ async function runMigrations(
   connectionString: string,
   migrationsSchema: string,
   migrationsFolder = 'drizzle',
-) {
-  const { pool, db } = createDb(connectionString);
+): Promise<void> {
+  const { client, db } = createDbByClient(connectionString);
   let isConnected = false;
   try {
-    await pool.connect();
+    await client.connect();
     isConnected = true;
 
     console.log('Running migrations...');
@@ -52,15 +52,13 @@ async function runMigrations(
       migrationsSchema,
     });
     console.log('Migrations completed successfully.');
-
-    await pool.end();
   } catch (e) {
     console.error('Migration failed!');
     console.error(e);
     throw e;
   } finally {
     if (isConnected) {
-      await pool.end();
+      await client.end();
     }
   }
 }

@@ -1,12 +1,10 @@
 import { Client } from 'pg';
-import { parse } from 'pg-connection-string';
 
 export async function checkAndCreateSchema(
   connectionString: string,
   schemas: string[],
 ): Promise<void> {
-  const config = parse(connectionString);
-  const client = new Client(config as any);
+  const client = new Client(connectionString);
   let isConnected = false;
 
   try {
