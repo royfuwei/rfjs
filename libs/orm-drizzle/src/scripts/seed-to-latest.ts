@@ -1,5 +1,5 @@
 import { SCHEMA } from '@/consts';
-import { createDb } from '@/db';
+import { createDbByClient } from '@/db';
 import { checkAndCreateDB } from './check-and-create-db';
 import { checkAndCreateSchema } from './check-and-create-schema';
 import { seedRecords } from '@/seeds';
@@ -20,17 +20,17 @@ export async function seedToLatest(
   optionsSchemas.forEach((i) => schemas.add(i));
   console.log('Get schemas: ', Array.from(schemas.values()));
 
-  await checkAndCreateDB(connectionString);
-  await checkAndCreateSchema(connectionString, Array.from(schemas.values()));
+  await checkAndCreateDB(finalConnectionString);
+  await checkAndCreateSchema(finalConnectionString, Array.from(schemas.values()));
 
-  await runSeeds(finalConnectionString, finalSchema);
+  await runSeeds(finalConnectionString);
 }
 
-async function runSeeds(connectionString: string, schema: string) {
+async function runSeeds(connectionString: string) {
   let isConnected = false;
-  const { pool, db } = createDb(connectionString);
+  const { client, db } = createDbByClient(connectionString);
   try {
-    await pool.connect();
+    await client.connect();
     isConnected = true;
 
     console.log('Running seeds...');
@@ -41,15 +41,13 @@ async function runSeeds(connectionString: string, schema: string) {
     }
 
     console.log('Seeds completed successfully.');
-
-    await pool.end();
   } catch (e) {
-    console.error('Migration failed!');
+    console.error('Seeding failed!');
     console.error(e);
     throw e;
   } finally {
     if (isConnected) {
-      await pool.end();
+      await client.end();
     }
   }
 }

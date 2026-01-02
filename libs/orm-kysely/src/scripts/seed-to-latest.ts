@@ -27,8 +27,10 @@ export async function seedToLatest(
 }
 
 async function runSeeds(connectionString: string) {
+  let isInitialized = false;
   const { db } = createDb(connectionString);
   try {
+    isInitialized = true;
     console.log('Running seeds...');
 
     for (const [key, seed] of Object.entries(seedRecords)) {
@@ -38,10 +40,12 @@ async function runSeeds(connectionString: string) {
 
     console.log('Seeds completed successfully.');
   } catch (e) {
-    console.error('Migration failed!');
+    console.error('Seeding failed!');
     console.error(e);
     throw e;
   } finally {
-    await db.destroy();
+    if (isInitialized) {
+      await db.destroy();
+    }
   }
 }

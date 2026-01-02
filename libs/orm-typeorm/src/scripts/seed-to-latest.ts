@@ -39,7 +39,7 @@ async function runSeeds(connectionString: string) {
 
     console.log('Seeds completed successfully.');
   } catch (e) {
-    console.error('Migration failed!');
+    console.error('Seeding failed!');
     console.error(e);
     throw e;
   } finally {

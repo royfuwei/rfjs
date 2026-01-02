@@ -20,19 +20,15 @@ export async function seedToLatest(
   optionsSchemas.forEach((i) => schemas.add(i));
   console.log('Get schemas: ', Array.from(schemas.values()));
 
-  await checkAndCreateDB(connectionString);
-  await checkAndCreateSchema(connectionString, Array.from(schemas.values()));
+  await checkAndCreateDB(finalConnectionString);
+  await checkAndCreateSchema(finalConnectionString, Array.from(schemas.values()));
 
-  await runSeeds(finalConnectionString, finalSchema);
+  await runSeeds(finalConnectionString);
 }
 
-async function runSeeds(connectionString: string, schema: string) {
-  let isConnected = false;
-  const { pool, db } = createDb(connectionString);
+async function runSeeds(connectionString: string) {
+  const { db } = createDb(connectionString);
   try {
-    await pool.connect();
-    isConnected = true;
-
     console.log('Running seeds...');
 
     for (const [key, seed] of Object.entries(seedRecords)) {
@@ -41,15 +37,11 @@ async function runSeeds(connectionString: string, schema: string) {
     }
 
     console.log('Seeds completed successfully.');
-
-    await pool.end();
   } catch (e) {
-    console.error('Migration failed!');
+    console.error('Seeding failed!');
     console.error(e);
     throw e;
   } finally {
-    if (isConnected) {
-      await pool.end();
-    }
+    await db.$disconnect();
   }
 }
