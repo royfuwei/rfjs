@@ -10,5 +10,5 @@ const todoData: TodoEntityInsert[] = [
 
 export async function seed(db: DataSource): Promise<void> {
   const repo = db.getRepository(TodoEntity);
-  repo.insert(todoData);
+  await repo.insert(todoData);
 }

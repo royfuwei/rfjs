@@ -7,7 +7,7 @@ export async function checkAndCreateDB(connectionString: string): Promise<void> 
   const config = parse(connectionString);
   const { user, password, host, port, database } = config;
   const adminConnectionString = `postgres://${user}:${password}@${host}:${port}/postgres`;
-  let targetDb = database ?? 'orm';
+  const targetDb = database ?? 'orm';
   const client = new Client({
     connectionString: adminConnectionString,
   });

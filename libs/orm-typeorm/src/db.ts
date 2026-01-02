@@ -25,6 +25,7 @@ export function createDb(connectionString: string, targetSchema?: string) {
     url: finalConnectionString,
     synchronize: false,
     logging: false,
+    migrationsTableName: '__typeorm_migrations',
     entities: entityClasses,
     migrations: migrationClasses,
   });
