@@ -22,7 +22,7 @@
     "prisma:migrate:dev": "prisma migrate dev",
     "prisma:migrate:deploy": "prisma migrate deploy",
     "prisma:seed": "npx prisma db seed",
-    "lint-staged": "npx lint-staged --no-stash",
+    "lint-staged": "npx lint-staged",
     "lint": "eslint \"{src,apps,libs,test}/**/*.ts\"",
     "lint:fix": "eslint \"{src,apps,libs,test}/**/*.ts\" --fix",
     "test": "npm run vitest:run",

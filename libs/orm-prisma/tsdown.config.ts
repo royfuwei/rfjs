@@ -2,6 +2,7 @@
 import { defineConfig } from 'tsdown';
 import { tsdownCopyPackageJsonPlugin } from './scripts/copyPackageJsonPlugin';
 import fs from 'fs';
+import { copyFilesPlugin } from './scripts/copyFilesPlugin';
 
 // 讀取 root package.json，標記 external
 const pkg: Record<string, unknown> =
@@ -43,6 +44,9 @@ export default defineConfig({
   plugins: [
     tsdownCopyPackageJsonPlugin({
       distDir: 'dist',
+    }),
+    copyFilesPlugin({
+      files: ['prisma', 'prisma.config.ts'],
     }),
   ],
 });

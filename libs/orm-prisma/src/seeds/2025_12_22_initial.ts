@@ -46,7 +46,7 @@ const userData: UserCreateInput[] = [
   },
 ];
 
-export const seeds = async (prisma: PrismaClient) => {
+export const seed = async (prisma: PrismaClient) => {
   console.log(`Start seeding ...`);
 
   // Clear existing data

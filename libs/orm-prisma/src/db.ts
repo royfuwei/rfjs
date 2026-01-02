@@ -17,14 +17,14 @@ export function createDb(
   db: PrismaClient;
   hasSearchPath: boolean;
 } {
-  const { finalConnectionString, hasSearchPath } = getConnectionStringInfo(
+  const { finalConnectionString, hasSearchPath, finalSchema } = getConnectionStringInfo(
     connectionString,
     targetSchema,
   );
 
   const pool = new Pool({ connectionString: finalConnectionString });
 
-  const adapter = new PrismaPg(pool);
+  const adapter = new PrismaPg(pool, { schema: finalSchema });
   const db = new PrismaClient({ adapter });
   return {
     pool,
