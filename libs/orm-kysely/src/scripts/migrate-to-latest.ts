@@ -61,12 +61,13 @@ async function runMigrations(
     });
 
     if (error) {
+      // eslint-disable-next-line @typescript-eslint/only-throw-error
       throw error;
     }
   } catch (e) {
     console.error('failed to migrate');
     console.error(e);
-    process.exit(1);
+    throw e;
   } finally {
     await db.destroy();
   }
