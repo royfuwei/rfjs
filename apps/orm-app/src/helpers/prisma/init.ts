@@ -1,6 +1,6 @@
 import { createDb } from '@rfjs/orm-prisma';
 import { configs } from '@/configs';
-import { runPrismaMigrate } from '@/scripts/prisma-migrate';
+import { migratePrisma } from '@/scripts/migrate-prisma';
 
 export const initPrisma = () => {
   console.log('Initializing Prisma...');
@@ -13,7 +13,7 @@ export const initPrisma = () => {
 
 export const _testInitPrisma = async () => {
   try {
-    await runPrismaMigrate();
+    await migratePrisma();
     const prisma = initPrisma();
     const users = await prisma.user.findMany();
     console.log('users: ', users);
