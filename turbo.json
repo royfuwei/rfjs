@@ -12,20 +12,24 @@
       ],
       "outputs": [
         ".next/**",
-        "!.next/cache/**"
+        "!.next/cache/**",
+        "dist/**"
       ]
     },
     "lint-staged": {
+      "cache": false,
       "dependsOn": [
         "^lint-staged"
       ]
     },
     "typecheck": {
+      "cache": false,
       "dependsOn": [
         "^typecheck"
       ]
     },
     "lint": {
+      "cache": false,
       "dependsOn": [
         "^lint"
       ]
