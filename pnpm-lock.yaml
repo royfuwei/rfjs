@@ -162,9 +162,6 @@ importers:
       '@rfjs/orm-typeorm':
         specifier: workspace:*
         version: link:../../libs/orm-typeorm
-      dotenv:
-        specifier: ^17.2.3
-        version: 17.2.3
       dotenv-flow:
         specifier: ^4.1.0
         version: 4.1.0
