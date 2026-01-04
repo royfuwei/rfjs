@@ -42,6 +42,8 @@ async function runMigrations(
     const migrator = new Migrator({
       db,
       migrationTableSchema: finalMigrationSchema,
+      migrationLockTableName: '__kysely_migrations_lock',
+      migrationTableName: '__kysely_migrations',
       provider: {
         // eslint-disable-next-line @typescript-eslint/require-await
         async getMigrations() {
