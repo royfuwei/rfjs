@@ -1,38 +1,49 @@
-orm-prisma
-===
+# @rfjs/orm-prisma
 
-This project is a `royfuwei/start-ts-templates#main/templates/lib-tsdown` template for creating a new project using the [start-ts-by](https://www.npmjs.com/package/start-ts-by) CLI.
+Prisma ORM wrapper library.
 
-## Getting Started
+## Installation
 
 ```bash
-# 1. Install dependencies
-npm install
-## or pnpm
-pnpm install
-# 2. Run the project
-npm run dev
-# 3. Build the project
-npm run build
-# 4. Run tests
-npm run test
-# 5. Run lint
-npm run lint
+pnpm add @rfjs/orm-prisma
 ```
 
-## Release
-```bash
-# 1. Release the project
-npx standard-version
-## or
-npm run release
-# dry run
-npm run release -- --dry-run
+## Environment Variables
 
-# 2. Release the project with version
-npm run release -- --version 1.0.0
+This library relies on the following environment variables:
+
+- `DATABASE_URL`: The PostgreSQL connection string.
+
+## Usage
+
+### Database Connection
+
+```typescript
+import { createDb } from '@rfjs/orm-prisma';
+
+// Initialize the Prisma client
+const { db } = createDb(process.env.DATABASE_URL);
 ```
 
-## Reference
-- [Original README](./START_BY_README.md)
-  
+### Migrations
+
+You can run migrations using the exported `migrateToLatest` function.
+
+```typescript
+import { migrateToLatest } from '@rfjs/orm-prisma';
+
+await migrateToLatest({
+  connectionString: process.env.DATABASE_URL,
+  schemaFilePath: 'node_modules/@rfjs/orm-prisma/dist/prisma/schema.prisma', // Path to your schema.prisma
+  configFilePath: 'node_modules/@rfjs/orm-prisma/dist/prisma.config.ts',   // Path to your prisma config
+  schema: 'app_prisma', // Optional: schema name
+});
+```
+
+### Seeding
+
+```typescript
+import { seedToLatest } from '@rfjs/orm-prisma';
+
+await seedToLatest(process.env.DATABASE_URL, 'app_prisma');
+```
