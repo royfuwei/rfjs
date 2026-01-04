@@ -1,8 +1,14 @@
+import { Client } from 'pg';
 import { SCHEMA } from '@/consts';
 import { createDb } from '@/db';
 import { getConnectionStringInfo } from '@/utils';
 import { checkAndCreateDB } from './check-and-create-db';
 import { checkAndCreateSchema } from './check-and-create-schema';
+import {
+  checkSeedExecuted,
+  ensureSeedHistoryTable,
+  recordSeedExecution,
+} from './seed-history';
 import { seedRecords } from '@/seeds';
 
 export async function seedToLatest(
@@ -30,14 +36,29 @@ async function runSeeds(connectionString: string) {
   const { db } = createDb(connectionString);
   try {
     await db.initialize();
-    console.log('Running seeds...');
+    const client = new Client({ connectionString });
+    await client.connect();
 
-    for (const [key, seed] of Object.entries(seedRecords)) {
-      console.log(`Seeding ${key}...`);
-      await seed(db);
+    try {
+      await ensureSeedHistoryTable(client);
+
+      console.log('Running seeds...');
+
+      for (const [key, seed] of Object.entries(seedRecords)) {
+        if (await checkSeedExecuted(client, key)) {
+          console.log(`Seed ${key} already executed. Skipping...`);
+          continue;
+        }
+
+        console.log(`Seeding ${key}...`);
+        await seed(db);
+        await recordSeedExecution(client, key);
+      }
+
+      console.log('Seeds completed successfully.');
+    } finally {
+      await client.end();
     }
-
-    console.log('Seeds completed successfully.');
   } catch (e) {
     console.error('Seeding failed!');
     console.error(e);
