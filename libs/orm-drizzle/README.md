@@ -1,38 +1,50 @@
-orm-drizzle
-===
+# @rfjs/orm-drizzle
 
-This project is a `royfuwei/start-ts-templates#main/templates/lib-tsdown` template for creating a new project using the [start-ts-by](https://www.npmjs.com/package/start-ts-by) CLI.
+Drizzle ORM wrapper library.
 
-## Getting Started
+## Installation
 
 ```bash
-# 1. Install dependencies
-npm install
-## or pnpm
-pnpm install
-# 2. Run the project
-npm run dev
-# 3. Build the project
-npm run build
-# 4. Run tests
-npm run test
-# 5. Run lint
-npm run lint
+pnpm add @rfjs/orm-drizzle
 ```
 
-## Release
-```bash
-# 1. Release the project
-npx standard-version
-## or
-npm run release
-# dry run
-npm run release -- --dry-run
+## Environment Variables
 
-# 2. Release the project with version
-npm run release -- --version 1.0.0
+This library relies on the following environment variables:
+
+- `DATABASE_URL`: The PostgreSQL connection string.
+
+## Usage
+
+### Database Connection
+
+```typescript
+import { createDb } from '@rfjs/orm-drizzle';
+
+// Initialize the database connection
+const { db, pool } = createDb(process.env.DATABASE_URL);
 ```
 
-## Reference
-- [Original README](./START_BY_README.md)
-  
+### Migrations
+
+You can run migrations using the exported `migrateToLatest` function. This is typically used in a migration script in your application.
+
+```typescript
+import { migrateToLatest } from '@rfjs/orm-drizzle';
+
+await migrateToLatest({
+  connectionString: process.env.DATABASE_URL,
+  schema: 'public', // optional: specify schema
+  migrationsFolder: 'node_modules/@rfjs/orm-drizzle/dist/drizzle', // optional: path to migrations
+});
+```
+
+### Seeding
+
+Seeding can be performed using `seedToLatest`.
+
+```typescript
+import { seedToLatest } from '@rfjs/orm-drizzle';
+
+await seedToLatest(process.env.DATABASE_URL, 'public');
+```
