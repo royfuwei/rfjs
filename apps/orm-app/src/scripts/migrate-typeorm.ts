@@ -6,7 +6,6 @@ export async function migrateTypeorm() {
     throw new Error('DATABASE_URL is not defined');
   }
   const schema = 'app_typeorm';
-  console.log('Running TypeORM migrations with url:', configs.database.url);
   await migrateToLatest({
     connectionString: configs.database.url,
     schema,
