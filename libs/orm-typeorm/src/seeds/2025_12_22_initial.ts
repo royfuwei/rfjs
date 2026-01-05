@@ -1,7 +1,7 @@
-import { TodoEntity, TodoEntityInsert } from '@/entities';
+import { DemoEntity, DemoEntityInsert } from '@/entities';
 import { DataSource } from 'typeorm';
 
-const todoData: TodoEntityInsert[] = [
+const data: DemoEntityInsert[] = [
   {
     content: 'alice@prisma.io',
     complete: false,
@@ -9,6 +9,6 @@ const todoData: TodoEntityInsert[] = [
 ];
 
 export async function seed(db: DataSource): Promise<void> {
-  const repo = db.getRepository(TodoEntity);
-  await repo.insert(todoData);
+  const repo = db.getRepository(DemoEntity);
+  await repo.insert(data);
 }

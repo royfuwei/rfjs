@@ -8,12 +8,12 @@ import {
 } from 'typeorm';
 // import { EnumContentType } from './types';
 
-export type TodoEntityInsert = QueryDeepPartialEntity<TodoEntity>;
+export type DemoEntityInsert = QueryDeepPartialEntity<DemoEntity>;
 
 @Entity({
-  name: 'todo',
+  name: 'demo',
 })
-export class TodoEntity {
+export class DemoEntity {
   @PrimaryGeneratedColumn()
   id!: number;
 

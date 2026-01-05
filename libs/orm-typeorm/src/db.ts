@@ -5,7 +5,11 @@ import { getConnectionStringInfo } from './utils';
 
 type Ctor<T = any> = new (...args: any[]) => T;
 
-export function createDb(connectionString: string, targetSchema?: string) {
+export function createDb(
+  connectionString: string,
+  targetSchema?: string,
+  logging?: boolean,
+) {
   const { finalConnectionString, hasSearchPath } = getConnectionStringInfo(
     connectionString,
     targetSchema,
@@ -24,7 +28,7 @@ export function createDb(connectionString: string, targetSchema?: string) {
     type: 'postgres',
     url: finalConnectionString,
     synchronize: false,
-    logging: false,
+    logging,
     migrationsTableName: '__typeorm_migrations',
     entities: entityClasses,
     migrations: migrationClasses,
