@@ -29,8 +29,9 @@ const { db: dataSource } = createDb(process.env.DATABASE_URL);
 
 您可以使用匯出的 `migrateToLatest` 函式來執行遷移。請注意，遷移檔案已打包在此函式庫中。
 
+
 ```typescript
-import { migrateToLatest } from '@rfjs/orm-typeorm';
+import { migrateToLatest } from '@coa/orm-core';
 
 await migrateToLatest({
   connectionString: process.env.DATABASE_URL,
@@ -38,10 +39,72 @@ await migrateToLatest({
 });
 ```
 
+#### 1. 新增 entity，建立新遷移檔案
+
+在 `src/entities` 目錄下建立完後，可以使用：
+```sh
+pnpm typeorm migration:generate src/migrations/{MigrationName}
+# ex: pnpm migration:generate src/migrations/create-demo
+```
+
+再執行
+```sh
+# 建立 migrations index
+pnpm migrate:gen-index
+
+# migrate db
+pnpm migrate
+```
+
+#### 2. 建立空的遷移檔案
+
+在 `src/migrations` 目錄下建立空的遷移檔案，可以使用：
+```sh
+pnpm migration:create src/migrations/{MigrationName}
+# ex: pnpm migration:create src/migrations/create-empty
+```
+
+再執行
+```sh
+# 建立 migrations index
+pnpm migrate:gen-index
+
+# migrate db
+pnpm migrate
+```
+
+
 ### 資料庫種子 (Seeding)
 
 ```typescript
-import { seedToLatest } from '@rfjs/orm-typeorm';
+import { seedToLatest } from '@coa/orm-core';
 
 await seedToLatest(process.env.DATABASE_URL, 'app_typeorm');
+```
+
+#### 新增種子檔案
+
+```ts
+import { DemoEntity, DemoEntityInsert } from '@/entities';
+import { DataSource } from 'typeorm';
+
+const data: DemoEntityInsert[] = [
+  {
+    content: 'alice@prisma.io',
+    complete: false,
+  },
+];
+
+export async function seed(db: DataSource): Promise<void> {
+  const repo = db.getRepository(DemoEntity);
+  await repo.insert(data);
+}
+```
+
+```sh
+# 建立 seeds index
+pnpm seed:gen-index
+
+# seed db
+pnpm seed
 ```
