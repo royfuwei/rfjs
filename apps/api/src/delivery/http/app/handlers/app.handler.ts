@@ -1,4 +1,3 @@
-import { getExDemoValue } from '@rfjs/utils';
 import { RouteHandlerMethod } from 'fastify/types/route';
 
 export const getAppHandler: RouteHandlerMethod = async (req, reply) => {
@@ -11,6 +10,5 @@ export const testAppError: RouteHandlerMethod = async (req, reply) => {
 };
 
 export const getDemoDataHandler: RouteHandlerMethod = async (req, reply) => {
-  const data = getExDemoValue();
-  reply.send({ data });
+  reply.send({ data: 'app' });
 };

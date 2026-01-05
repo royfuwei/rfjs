@@ -8,7 +8,6 @@ export async function migrateKysely() {
     throw new Error('DATABASE_URL is not defined');
   }
   const schema = 'app_kysely';
-  console.log('Running migrations with url:', configs.database.url);
 
   await migrateToLatest({
     connectionString: configs.database.url,
