@@ -12,7 +12,7 @@ const externalDeps = [...dependencies, ...peerDependencies];
 
 export default defineConfig({
   // 對應你原本的 inputFile = 'src/index.ts'
-  entry: 'src/index.ts',
+  entry: ['src/index.ts', 'src/admin/index.ts'],
 
   // 對應原本 distDir = 'dist'
   outDir: 'dist',
@@ -26,7 +26,9 @@ export default defineConfig({
   treeshake: true,
 
   // 對應原本 platform: 'neutral'
-  platform: 'neutral',
+  platform: 'node',
+
+  fixedExtension: false,
 
   // 你原本沒設 target，就給個合理的預設
   target: 'es2023',
