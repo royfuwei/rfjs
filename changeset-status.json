@@ -7,19 +7,19 @@
           "type": "patch"
         }
       ],
-      "summary": "test publish package",
-      "id": "curvy-adults-rescue"
+      "summary": "test publish pg-toolkit",
+      "id": "polite-dryers-cut"
     }
   ],
   "releases": [
     {
       "name": "@rfjs/pg-toolkit",
       "type": "patch",
-      "oldVersion": "0.0.1",
+      "oldVersion": "0.0.2",
       "changesets": [
-        "curvy-adults-rescue"
+        "polite-dryers-cut"
       ],
-      "newVersion": "0.0.2"
+      "newVersion": "0.0.3"
     }
   ]
 }
