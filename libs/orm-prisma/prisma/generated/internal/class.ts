@@ -19,7 +19,7 @@ const config: runtime.GetPrismaClientConfig = {
   engineVersion: '0c8ef2ce45c83248ab3df073180d5eda9e8be7a3',
   activeProvider: 'postgresql',
   inlineSchema:
-    'generator client {\n  provider = "prisma-client"\n  output   = "./generated"\n}\n\ndatasource db {\n  provider = "postgresql"\n}\n\nmodel User {\n  id    Int     @id @default(autoincrement())\n  email String  @unique\n  name  String?\n  posts Post[]\n\n  @@map("users")\n}\n\nmodel Post {\n  id        Int     @id @default(autoincrement())\n  title     String\n  content   String?\n  published Boolean @default(false)\n  author    User?   @relation(fields: [authorId], references: [id])\n  authorId  Int?\n\n  @@map("posts")\n}\n',
+    'generator client {\n  provider = "prisma-client"\n  output   = "./generated"\n}\n\ndatasource db {\n  provider = "postgresql"\n}\n\nmodel Demo {\n  id       Int     @id @default(autoincrement())\n  content  String  @db.VarChar(100)\n  complete Boolean @default(false)\n\n  createdAt DateTime @default(now()) @map("created_at") @db.Timestamptz(6)\n  updatedAt DateTime @updatedAt @map("updated_at") @db.Timestamptz(6)\n\n  @@map("demo")\n}\n\nmodel SeedHistory {\n  id         Int      @id @default(autoincrement())\n  name       String   @unique @db.VarChar(255)\n  executedAt DateTime @default(now()) @map("executed_at") @db.Timestamptz(6)\n\n  @@map("__seed_history")\n}\n',
   runtimeDataModel: {
     models: {},
     enums: {},
@@ -28,7 +28,7 @@ const config: runtime.GetPrismaClientConfig = {
 };
 
 config.runtimeDataModel = JSON.parse(
-  '{"models":{"User":{"fields":[{"name":"id","kind":"scalar","type":"Int"},{"name":"email","kind":"scalar","type":"String"},{"name":"name","kind":"scalar","type":"String"},{"name":"posts","kind":"object","type":"Post","relationName":"PostToUser"}],"dbName":"users"},"Post":{"fields":[{"name":"id","kind":"scalar","type":"Int"},{"name":"title","kind":"scalar","type":"String"},{"name":"content","kind":"scalar","type":"String"},{"name":"published","kind":"scalar","type":"Boolean"},{"name":"author","kind":"object","type":"User","relationName":"PostToUser"},{"name":"authorId","kind":"scalar","type":"Int"}],"dbName":"posts"}},"enums":{},"types":{}}',
+  '{"models":{"Demo":{"fields":[{"name":"id","kind":"scalar","type":"Int"},{"name":"content","kind":"scalar","type":"String"},{"name":"complete","kind":"scalar","type":"Boolean"},{"name":"createdAt","kind":"scalar","type":"DateTime","dbName":"created_at"},{"name":"updatedAt","kind":"scalar","type":"DateTime","dbName":"updated_at"}],"dbName":"demo"},"SeedHistory":{"fields":[{"name":"id","kind":"scalar","type":"Int"},{"name":"name","kind":"scalar","type":"String"},{"name":"executedAt","kind":"scalar","type":"DateTime","dbName":"executed_at"}],"dbName":"__seed_history"}},"enums":{},"types":{}}',
 );
 
 async function decodeBase64AsWasm(wasmBase64: string): Promise<WebAssembly.Module> {
@@ -64,8 +64,8 @@ export interface PrismaClientConstructor {
    * @example
    * ```
    * const prisma = new PrismaClient()
-   * // Fetch zero or more Users
-   * const users = await prisma.user.findMany()
+   * // Fetch zero or more Demos
+   * const demos = await prisma.demo.findMany()
    * ```
    *
    * Read more in our [docs](https://pris.ly/d/client).
@@ -93,8 +93,8 @@ export interface PrismaClientConstructor {
  * @example
  * ```
  * const prisma = new PrismaClient()
- * // Fetch zero or more Users
- * const users = await prisma.user.findMany()
+ * // Fetch zero or more Demos
+ * const demos = await prisma.demo.findMany()
  * ```
  *
  * Read more in our [docs](https://pris.ly/d/client).
@@ -220,24 +220,24 @@ export interface PrismaClient<
   >;
 
   /**
-   * `prisma.user`: Exposes CRUD operations for the **User** model.
+   * `prisma.demo`: Exposes CRUD operations for the **Demo** model.
    * Example usage:
    * ```ts
-   * // Fetch zero or more Users
-   * const users = await prisma.user.findMany()
+   * // Fetch zero or more Demos
+   * const demos = await prisma.demo.findMany()
    * ```
    */
-  get user(): Prisma.UserDelegate<ExtArgs, { omit: OmitOpts }>;
+  get demo(): Prisma.DemoDelegate<ExtArgs, { omit: OmitOpts }>;
 
   /**
-   * `prisma.post`: Exposes CRUD operations for the **Post** model.
+   * `prisma.seedHistory`: Exposes CRUD operations for the **SeedHistory** model.
    * Example usage:
    * ```ts
-   * // Fetch zero or more Posts
-   * const posts = await prisma.post.findMany()
+   * // Fetch zero or more SeedHistories
+   * const seedHistories = await prisma.seedHistory.findMany()
    * ```
    */
-  get post(): Prisma.PostDelegate<ExtArgs, { omit: OmitOpts }>;
+  get seedHistory(): Prisma.SeedHistoryDelegate<ExtArgs, { omit: OmitOpts }>;
 }
 
 export function getPrismaClientClass(): PrismaClientConstructor {

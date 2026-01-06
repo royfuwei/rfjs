@@ -48,8 +48,8 @@ export const JsonNull = runtime.JsonNull;
 export const AnyNull = runtime.AnyNull;
 
 export const ModelName = {
-  User: 'User',
-  Post: 'Post',
+  Demo: 'Demo',
+  SeedHistory: 'SeedHistory',
 } as const;
 
 export type ModelName = (typeof ModelName)[keyof typeof ModelName];
@@ -68,25 +68,25 @@ export const TransactionIsolationLevel = {
 export type TransactionIsolationLevel =
   (typeof TransactionIsolationLevel)[keyof typeof TransactionIsolationLevel];
 
-export const UserScalarFieldEnum = {
+export const DemoScalarFieldEnum = {
   id: 'id',
-  email: 'email',
-  name: 'name',
-} as const;
-
-export type UserScalarFieldEnum =
-  (typeof UserScalarFieldEnum)[keyof typeof UserScalarFieldEnum];
-
-export const PostScalarFieldEnum = {
-  id: 'id',
-  title: 'title',
   content: 'content',
-  published: 'published',
-  authorId: 'authorId',
+  complete: 'complete',
+  createdAt: 'createdAt',
+  updatedAt: 'updatedAt',
 } as const;
 
-export type PostScalarFieldEnum =
-  (typeof PostScalarFieldEnum)[keyof typeof PostScalarFieldEnum];
+export type DemoScalarFieldEnum =
+  (typeof DemoScalarFieldEnum)[keyof typeof DemoScalarFieldEnum];
+
+export const SeedHistoryScalarFieldEnum = {
+  id: 'id',
+  name: 'name',
+  executedAt: 'executedAt',
+} as const;
+
+export type SeedHistoryScalarFieldEnum =
+  (typeof SeedHistoryScalarFieldEnum)[keyof typeof SeedHistoryScalarFieldEnum];
 
 export const SortOrder = {
   asc: 'asc',
@@ -101,10 +101,3 @@ export const QueryMode = {
 } as const;
 
 export type QueryMode = (typeof QueryMode)[keyof typeof QueryMode];
-
-export const NullsOrder = {
-  first: 'first',
-  last: 'last',
-} as const;
-
-export type NullsOrder = (typeof NullsOrder)[keyof typeof NullsOrder];

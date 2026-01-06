@@ -391,8 +391,8 @@ type FieldRefInputType<Model, FieldType> = Model extends never
   : FieldRef<Model, FieldType>;
 
 export const ModelName = {
-  User: 'User',
-  Post: 'Post',
+  Demo: 'Demo',
+  SeedHistory: 'SeedHistory',
 } as const;
 
 export type ModelName = (typeof ModelName)[keyof typeof ModelName];
@@ -414,158 +414,158 @@ export type TypeMap<
     omit: GlobalOmitOptions;
   };
   meta: {
-    modelProps: 'user' | 'post';
+    modelProps: 'demo' | 'seedHistory';
     txIsolationLevel: TransactionIsolationLevel;
   };
   model: {
-    User: {
-      payload: Prisma.$UserPayload<ExtArgs>;
-      fields: Prisma.UserFieldRefs;
+    Demo: {
+      payload: Prisma.$DemoPayload<ExtArgs>;
+      fields: Prisma.DemoFieldRefs;
       operations: {
         findUnique: {
-          args: Prisma.UserFindUniqueArgs<ExtArgs>;
-          result: runtime.Types.Utils.PayloadToResult<Prisma.$UserPayload> | null;
+          args: Prisma.DemoFindUniqueArgs<ExtArgs>;
+          result: runtime.Types.Utils.PayloadToResult<Prisma.$DemoPayload> | null;
         };
         findUniqueOrThrow: {
-          args: Prisma.UserFindUniqueOrThrowArgs<ExtArgs>;
-          result: runtime.Types.Utils.PayloadToResult<Prisma.$UserPayload>;
+          args: Prisma.DemoFindUniqueOrThrowArgs<ExtArgs>;
+          result: runtime.Types.Utils.PayloadToResult<Prisma.$DemoPayload>;
         };
         findFirst: {
-          args: Prisma.UserFindFirstArgs<ExtArgs>;
-          result: runtime.Types.Utils.PayloadToResult<Prisma.$UserPayload> | null;
+          args: Prisma.DemoFindFirstArgs<ExtArgs>;
+          result: runtime.Types.Utils.PayloadToResult<Prisma.$DemoPayload> | null;
         };
         findFirstOrThrow: {
-          args: Prisma.UserFindFirstOrThrowArgs<ExtArgs>;
-          result: runtime.Types.Utils.PayloadToResult<Prisma.$UserPayload>;
+          args: Prisma.DemoFindFirstOrThrowArgs<ExtArgs>;
+          result: runtime.Types.Utils.PayloadToResult<Prisma.$DemoPayload>;
         };
         findMany: {
-          args: Prisma.UserFindManyArgs<ExtArgs>;
-          result: runtime.Types.Utils.PayloadToResult<Prisma.$UserPayload>[];
+          args: Prisma.DemoFindManyArgs<ExtArgs>;
+          result: runtime.Types.Utils.PayloadToResult<Prisma.$DemoPayload>[];
         };
         create: {
-          args: Prisma.UserCreateArgs<ExtArgs>;
-          result: runtime.Types.Utils.PayloadToResult<Prisma.$UserPayload>;
+          args: Prisma.DemoCreateArgs<ExtArgs>;
+          result: runtime.Types.Utils.PayloadToResult<Prisma.$DemoPayload>;
         };
         createMany: {
-          args: Prisma.UserCreateManyArgs<ExtArgs>;
+          args: Prisma.DemoCreateManyArgs<ExtArgs>;
           result: BatchPayload;
         };
         createManyAndReturn: {
-          args: Prisma.UserCreateManyAndReturnArgs<ExtArgs>;
-          result: runtime.Types.Utils.PayloadToResult<Prisma.$UserPayload>[];
+          args: Prisma.DemoCreateManyAndReturnArgs<ExtArgs>;
+          result: runtime.Types.Utils.PayloadToResult<Prisma.$DemoPayload>[];
         };
         delete: {
-          args: Prisma.UserDeleteArgs<ExtArgs>;
-          result: runtime.Types.Utils.PayloadToResult<Prisma.$UserPayload>;
+          args: Prisma.DemoDeleteArgs<ExtArgs>;
+          result: runtime.Types.Utils.PayloadToResult<Prisma.$DemoPayload>;
         };
         update: {
-          args: Prisma.UserUpdateArgs<ExtArgs>;
-          result: runtime.Types.Utils.PayloadToResult<Prisma.$UserPayload>;
+          args: Prisma.DemoUpdateArgs<ExtArgs>;
+          result: runtime.Types.Utils.PayloadToResult<Prisma.$DemoPayload>;
         };
         deleteMany: {
-          args: Prisma.UserDeleteManyArgs<ExtArgs>;
+          args: Prisma.DemoDeleteManyArgs<ExtArgs>;
           result: BatchPayload;
         };
         updateMany: {
-          args: Prisma.UserUpdateManyArgs<ExtArgs>;
+          args: Prisma.DemoUpdateManyArgs<ExtArgs>;
           result: BatchPayload;
         };
         updateManyAndReturn: {
-          args: Prisma.UserUpdateManyAndReturnArgs<ExtArgs>;
-          result: runtime.Types.Utils.PayloadToResult<Prisma.$UserPayload>[];
+          args: Prisma.DemoUpdateManyAndReturnArgs<ExtArgs>;
+          result: runtime.Types.Utils.PayloadToResult<Prisma.$DemoPayload>[];
         };
         upsert: {
-          args: Prisma.UserUpsertArgs<ExtArgs>;
-          result: runtime.Types.Utils.PayloadToResult<Prisma.$UserPayload>;
+          args: Prisma.DemoUpsertArgs<ExtArgs>;
+          result: runtime.Types.Utils.PayloadToResult<Prisma.$DemoPayload>;
         };
         aggregate: {
-          args: Prisma.UserAggregateArgs<ExtArgs>;
-          result: runtime.Types.Utils.Optional<Prisma.AggregateUser>;
+          args: Prisma.DemoAggregateArgs<ExtArgs>;
+          result: runtime.Types.Utils.Optional<Prisma.AggregateDemo>;
         };
         groupBy: {
-          args: Prisma.UserGroupByArgs<ExtArgs>;
-          result: runtime.Types.Utils.Optional<Prisma.UserGroupByOutputType>[];
+          args: Prisma.DemoGroupByArgs<ExtArgs>;
+          result: runtime.Types.Utils.Optional<Prisma.DemoGroupByOutputType>[];
         };
         count: {
-          args: Prisma.UserCountArgs<ExtArgs>;
+          args: Prisma.DemoCountArgs<ExtArgs>;
           result:
-            | runtime.Types.Utils.Optional<Prisma.UserCountAggregateOutputType>
+            | runtime.Types.Utils.Optional<Prisma.DemoCountAggregateOutputType>
             | number;
         };
       };
     };
-    Post: {
-      payload: Prisma.$PostPayload<ExtArgs>;
-      fields: Prisma.PostFieldRefs;
+    SeedHistory: {
+      payload: Prisma.$SeedHistoryPayload<ExtArgs>;
+      fields: Prisma.SeedHistoryFieldRefs;
       operations: {
         findUnique: {
-          args: Prisma.PostFindUniqueArgs<ExtArgs>;
-          result: runtime.Types.Utils.PayloadToResult<Prisma.$PostPayload> | null;
+          args: Prisma.SeedHistoryFindUniqueArgs<ExtArgs>;
+          result: runtime.Types.Utils.PayloadToResult<Prisma.$SeedHistoryPayload> | null;
         };
         findUniqueOrThrow: {
-          args: Prisma.PostFindUniqueOrThrowArgs<ExtArgs>;
-          result: runtime.Types.Utils.PayloadToResult<Prisma.$PostPayload>;
+          args: Prisma.SeedHistoryFindUniqueOrThrowArgs<ExtArgs>;
+          result: runtime.Types.Utils.PayloadToResult<Prisma.$SeedHistoryPayload>;
         };
         findFirst: {
-          args: Prisma.PostFindFirstArgs<ExtArgs>;
-          result: runtime.Types.Utils.PayloadToResult<Prisma.$PostPayload> | null;
+          args: Prisma.SeedHistoryFindFirstArgs<ExtArgs>;
+          result: runtime.Types.Utils.PayloadToResult<Prisma.$SeedHistoryPayload> | null;
         };
         findFirstOrThrow: {
-          args: Prisma.PostFindFirstOrThrowArgs<ExtArgs>;
-          result: runtime.Types.Utils.PayloadToResult<Prisma.$PostPayload>;
+          args: Prisma.SeedHistoryFindFirstOrThrowArgs<ExtArgs>;
+          result: runtime.Types.Utils.PayloadToResult<Prisma.$SeedHistoryPayload>;
         };
         findMany: {
-          args: Prisma.PostFindManyArgs<ExtArgs>;
-          result: runtime.Types.Utils.PayloadToResult<Prisma.$PostPayload>[];
+          args: Prisma.SeedHistoryFindManyArgs<ExtArgs>;
+          result: runtime.Types.Utils.PayloadToResult<Prisma.$SeedHistoryPayload>[];
         };
         create: {
-          args: Prisma.PostCreateArgs<ExtArgs>;
-          result: runtime.Types.Utils.PayloadToResult<Prisma.$PostPayload>;
+          args: Prisma.SeedHistoryCreateArgs<ExtArgs>;
+          result: runtime.Types.Utils.PayloadToResult<Prisma.$SeedHistoryPayload>;
         };
         createMany: {
-          args: Prisma.PostCreateManyArgs<ExtArgs>;
+          args: Prisma.SeedHistoryCreateManyArgs<ExtArgs>;
           result: BatchPayload;
         };
         createManyAndReturn: {
-          args: Prisma.PostCreateManyAndReturnArgs<ExtArgs>;
-          result: runtime.Types.Utils.PayloadToResult<Prisma.$PostPayload>[];
+          args: Prisma.SeedHistoryCreateManyAndReturnArgs<ExtArgs>;
+          result: runtime.Types.Utils.PayloadToResult<Prisma.$SeedHistoryPayload>[];
         };
         delete: {
-          args: Prisma.PostDeleteArgs<ExtArgs>;
-          result: runtime.Types.Utils.PayloadToResult<Prisma.$PostPayload>;
+          args: Prisma.SeedHistoryDeleteArgs<ExtArgs>;
+          result: runtime.Types.Utils.PayloadToResult<Prisma.$SeedHistoryPayload>;
         };
         update: {
-          args: Prisma.PostUpdateArgs<ExtArgs>;
-          result: runtime.Types.Utils.PayloadToResult<Prisma.$PostPayload>;
+          args: Prisma.SeedHistoryUpdateArgs<ExtArgs>;
+          result: runtime.Types.Utils.PayloadToResult<Prisma.$SeedHistoryPayload>;
         };
         deleteMany: {
-          args: Prisma.PostDeleteManyArgs<ExtArgs>;
+          args: Prisma.SeedHistoryDeleteManyArgs<ExtArgs>;
           result: BatchPayload;
         };
         updateMany: {
-          args: Prisma.PostUpdateManyArgs<ExtArgs>;
+          args: Prisma.SeedHistoryUpdateManyArgs<ExtArgs>;
           result: BatchPayload;
         };
         updateManyAndReturn: {
-          args: Prisma.PostUpdateManyAndReturnArgs<ExtArgs>;
-          result: runtime.Types.Utils.PayloadToResult<Prisma.$PostPayload>[];
+          args: Prisma.SeedHistoryUpdateManyAndReturnArgs<ExtArgs>;
+          result: runtime.Types.Utils.PayloadToResult<Prisma.$SeedHistoryPayload>[];
         };
         upsert: {
-          args: Prisma.PostUpsertArgs<ExtArgs>;
-          result: runtime.Types.Utils.PayloadToResult<Prisma.$PostPayload>;
+          args: Prisma.SeedHistoryUpsertArgs<ExtArgs>;
+          result: runtime.Types.Utils.PayloadToResult<Prisma.$SeedHistoryPayload>;
         };
         aggregate: {
-          args: Prisma.PostAggregateArgs<ExtArgs>;
-          result: runtime.Types.Utils.Optional<Prisma.AggregatePost>;
+          args: Prisma.SeedHistoryAggregateArgs<ExtArgs>;
+          result: runtime.Types.Utils.Optional<Prisma.AggregateSeedHistory>;
         };
         groupBy: {
-          args: Prisma.PostGroupByArgs<ExtArgs>;
-          result: runtime.Types.Utils.Optional<Prisma.PostGroupByOutputType>[];
+          args: Prisma.SeedHistoryGroupByArgs<ExtArgs>;
+          result: runtime.Types.Utils.Optional<Prisma.SeedHistoryGroupByOutputType>[];
         };
         count: {
-          args: Prisma.PostCountArgs<ExtArgs>;
+          args: Prisma.SeedHistoryCountArgs<ExtArgs>;
           result:
-            | runtime.Types.Utils.Optional<Prisma.PostCountAggregateOutputType>
+            | runtime.Types.Utils.Optional<Prisma.SeedHistoryCountAggregateOutputType>
             | number;
         };
       };
@@ -609,25 +609,25 @@ export const TransactionIsolationLevel = runtime.makeStrictEnum({
 export type TransactionIsolationLevel =
   (typeof TransactionIsolationLevel)[keyof typeof TransactionIsolationLevel];
 
-export const UserScalarFieldEnum = {
+export const DemoScalarFieldEnum = {
   id: 'id',
-  email: 'email',
-  name: 'name',
-} as const;
-
-export type UserScalarFieldEnum =
-  (typeof UserScalarFieldEnum)[keyof typeof UserScalarFieldEnum];
-
-export const PostScalarFieldEnum = {
-  id: 'id',
-  title: 'title',
   content: 'content',
-  published: 'published',
-  authorId: 'authorId',
+  complete: 'complete',
+  createdAt: 'createdAt',
+  updatedAt: 'updatedAt',
 } as const;
 
-export type PostScalarFieldEnum =
-  (typeof PostScalarFieldEnum)[keyof typeof PostScalarFieldEnum];
+export type DemoScalarFieldEnum =
+  (typeof DemoScalarFieldEnum)[keyof typeof DemoScalarFieldEnum];
+
+export const SeedHistoryScalarFieldEnum = {
+  id: 'id',
+  name: 'name',
+  executedAt: 'executedAt',
+} as const;
+
+export type SeedHistoryScalarFieldEnum =
+  (typeof SeedHistoryScalarFieldEnum)[keyof typeof SeedHistoryScalarFieldEnum];
 
 export const SortOrder = {
   asc: 'asc',
@@ -642,13 +642,6 @@ export const QueryMode = {
 } as const;
 
 export type QueryMode = (typeof QueryMode)[keyof typeof QueryMode];
-
-export const NullsOrder = {
-  first: 'first',
-  last: 'last',
-} as const;
-
-export type NullsOrder = (typeof NullsOrder)[keyof typeof NullsOrder];
 
 /**
  * Field references
@@ -683,6 +676,22 @@ export type ListStringFieldRefInput<$PrismaModel> = FieldRefInputType<
 export type BooleanFieldRefInput<$PrismaModel> = FieldRefInputType<
   $PrismaModel,
   'Boolean'
+>;
+
+/**
+ * Reference to a field of type 'DateTime'
+ */
+export type DateTimeFieldRefInput<$PrismaModel> = FieldRefInputType<
+  $PrismaModel,
+  'DateTime'
+>;
+
+/**
+ * Reference to a field of type 'DateTime[]'
+ */
+export type ListDateTimeFieldRefInput<$PrismaModel> = FieldRefInputType<
+  $PrismaModel,
+  'DateTime[]'
 >;
 
 /**
@@ -801,8 +810,8 @@ export type PrismaClientOptions = (
   comments?: runtime.SqlCommenterPlugin[];
 };
 export type GlobalOmitConfig = {
-  user?: Prisma.UserOmit;
-  post?: Prisma.PostOmit;
+  demo?: Prisma.DemoOmit;
+  seedHistory?: Prisma.SeedHistoryOmit;
 };
 
 /* Types for Logging */
