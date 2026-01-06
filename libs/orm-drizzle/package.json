@@ -23,7 +23,7 @@
     "seed": "npm run seed:gen-index && npm run seed:run",
     "seed:gen-index": "npx tsx scripts/gen-seeds-index.ts",
     "seed:run": "npx tsx scripts/seed.ts",
-    "generate": "drizzle-kit generate",
+    "generate": "npx drizzle-kit generate",
     "test": "npm run vitest:run",
     "vitest": "vitest --passWithNoTests",
     "vitest:run": "vitest --passWithNoTests --run",
