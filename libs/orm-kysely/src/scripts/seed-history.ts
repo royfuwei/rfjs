@@ -15,7 +15,7 @@ export async function ensureSeedHistoryTable(
     CREATE TABLE IF NOT EXISTS "${tableName}" (
       "id" SERIAL PRIMARY KEY,
       "name" VARCHAR(255) NOT NULL UNIQUE,
-      "executed_at" TIMESTAMP DEFAULT NOW()
+      "executed_at" TIMESTAMPTZ DEFAULT NOW()
     );
   `);
 }
