@@ -1,5 +1,5 @@
 ---
-"@rfjs/pg-toolkit": minor
+"@rfjs/pg-toolkit": patch
 ---
 
 test publish package
