@@ -1,0 +1,25 @@
+{
+  "changesets": [
+    {
+      "releases": [
+        {
+          "name": "@rfjs/pg-toolkit",
+          "type": "patch"
+        }
+      ],
+      "summary": "test publish package",
+      "id": "curvy-adults-rescue"
+    }
+  ],
+  "releases": [
+    {
+      "name": "@rfjs/pg-toolkit",
+      "type": "patch",
+      "oldVersion": "0.0.1",
+      "changesets": [
+        "curvy-adults-rescue"
+      ],
+      "newVersion": "0.0.2"
+    }
+  ]
+}
