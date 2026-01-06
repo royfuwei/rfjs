@@ -12,6 +12,9 @@
     "format": "prettier --write \"**/*.{ts,tsx,md}\"",
     "commit": "npx cz",
     "release": "npx standard-version",
+    "changeset:add": "npx changeset",
+    "changeset:status": "npx changeset status",
+    "changeset:version": "npx changeset version",
     "prepare": "husky",
     "preinstall": "npx -y only-allow pnpm"
   },
@@ -21,6 +24,8 @@
     }
   },
   "devDependencies": {
+    "@changesets/changelog-git": "^0.2.1",
+    "@changesets/cli": "^2.29.8",
     "@commitlint/cli": "^19.8.1",
     "@commitlint/config-conventional": "^19.8.1",
     "@commitlint/cz-commitlint": "^19.8.1",
