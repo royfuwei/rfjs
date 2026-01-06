@@ -7,22 +7,21 @@ datasource db {
   provider = "postgresql"
 }
 
-model User {
-  id    Int     @id @default(autoincrement())
-  email String  @unique
-  name  String?
-  posts Post[]
+model Demo {
+  id       Int     @id @default(autoincrement())
+  content  String  @db.VarChar(100)
+  complete Boolean @default(false)
 
-  @@map("users")
+  createdAt DateTime @default(now()) @map("created_at") @db.Timestamptz(6)
+  updatedAt DateTime @updatedAt @map("updated_at") @db.Timestamptz(6)
+
+  @@map("demo")
 }
 
-model Post {
-  id        Int     @id @default(autoincrement())
-  title     String
-  content   String?
-  published Boolean @default(false)
-  author    User?   @relation(fields: [authorId], references: [id])
-  authorId  Int?
+model SeedHistory {
+  id         Int      @id @default(autoincrement())
+  name       String   @unique @db.VarChar(255)
+  executedAt DateTime @default(now()) @map("executed_at") @db.Timestamptz(6)
 
-  @@map("posts")
+  @@map("__seed_history")
 }
