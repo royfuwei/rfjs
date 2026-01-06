@@ -4,7 +4,7 @@
       "releases": [
         {
           "name": "@rfjs/pg-toolkit",
-          "type": "minor"
+          "type": "patch"
         }
       ],
       "summary": "test publish package",
@@ -14,12 +14,12 @@
   "releases": [
     {
       "name": "@rfjs/pg-toolkit",
-      "type": "minor",
-      "oldVersion": "0.0.0",
+      "type": "patch",
+      "oldVersion": "0.0.1",
       "changesets": [
         "curvy-adults-rescue"
       ],
-      "newVersion": "0.1.0"
+      "newVersion": "0.0.2"
     }
   ]
 }
