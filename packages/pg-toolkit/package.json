@@ -1,7 +1,7 @@
 {
   "name": "@rfjs/pg-toolkit",
   "version": "0.0.3",
-  "description": "A project created by lib-tsdown",
+  "description": "Shared PostgreSQL utilities and management scripts for Drizzle, Prisma, Kysely, and TypeORM",
   "main": "dist/index.js",
   "module": "dist/index.mjs",
   "types": "dist/index.d.ts",
@@ -87,7 +87,6 @@
     "husky": "^9.1.7",
     "inquirer": "9",
     "lint-staged": "^15.4.3",
-    "pg-connection-string": "^2.9.1",
     "prettier": "^3.5.1",
     "rimraf": "^6.0.1",
     "supertest": "^7.0.0",
@@ -100,6 +99,7 @@
   },
   "dependencies": {
     "pg": "^8.16.3",
+    "pg-connection-string": "^2.9.1",
     "tslib": "^2.8.1"
   }
 }
