@@ -1,7 +1,0 @@
-<?xml version="1.0" encoding="UTF-8" ?>
-<testsuites name="vitest tests" tests="1" failures="0" errors="0" time="0.000872">
-    <testsuite name="src/utils/demo/getDemoValue.spec.ts" timestamp="2026-01-07T05:52:24.082Z" hostname="MacBook-Pro-2.local" tests="1" failures="0" errors="0" skipped="0" time="0.000872">
-        <testcase classname="src/utils/demo/getDemoValue.spec.ts" name="utils/demo/getDemoValue &gt; should return the correct value" time="0.000482083">
-        </testcase>
-    </testsuite>
-</testsuites>
