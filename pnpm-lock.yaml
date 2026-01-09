@@ -723,6 +723,9 @@ importers:
       pg:
         specifier: ^8.16.3
         version: 8.16.3
+      pg-connection-string:
+        specifier: ^2.9.1
+        version: 2.9.1
       tslib:
         specifier: ^2.8.1
         version: 2.8.1
@@ -775,9 +778,6 @@ importers:
       lint-staged:
         specifier: ^15.4.3
         version: 15.5.2
-      pg-connection-string:
-        specifier: ^2.9.1
-        version: 2.9.1
       prettier:
         specifier: ^3.5.1
         version: 3.5.3
@@ -5742,11 +5742,6 @@ packages:
     engines: {node: '>=10'}
     hasBin: true
 
-  semver@7.6.3:
-    resolution: {integrity: sha512-oVekP1cKtI+CTDvHWYFUcMtsK/00wmAEfyqKfNdARm8u1wNVhSgaX7A8d4UuIlUI5e84iEwOhs7ZPYRmzU9U6A==}
-    engines: {node: '>=10'}
-    hasBin: true
-
   semver@7.7.2:
     resolution: {integrity: sha512-RF0Fw+rO5AMf9MAyaRXI4AV0Ulj5lMHqVxxdSgiVbixSCXoEmmX/jk0CuJw4+3SqroYO9VoUh+HcuJivvtJemA==}
     engines: {node: '>=10'}
@@ -7157,7 +7152,7 @@ snapshots:
   '@commitlint/is-ignored@19.8.1':
     dependencies:
       '@commitlint/types': 19.8.1
-      semver: 7.7.2
+      semver: 7.7.3
 
   '@commitlint/lint@19.8.1':
     dependencies:
@@ -11108,7 +11103,7 @@ snapshots:
 
   make-dir@4.0.0:
     dependencies:
-      semver: 7.7.2
+      semver: 7.7.3
 
   make-error@1.3.6: {}
 
@@ -11987,9 +11982,6 @@ snapshots:
 
   semver@7.6.2: {}
 
-  semver@7.6.3:
-    optional: true
-
   semver@7.7.2: {}
 
   semver@7.7.3: {}
@@ -12037,7 +12029,7 @@ snapshots:
     dependencies:
       color: 4.2.3
       detect-libc: 2.0.3
-      semver: 7.6.3
+      semver: 7.7.3
     optionalDependencies:
       '@img/sharp-darwin-arm64': 0.33.5
       '@img/sharp-darwin-x64': 0.33.5
