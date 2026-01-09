@@ -2,4 +2,4 @@
 "@rfjs/pg-toolkit": patch
 ---
 
-test publish
+test npm publish
