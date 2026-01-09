@@ -7,23 +7,23 @@
           "type": "patch"
         }
       ],
-      "summary": "Refactor: enhance pg-toolkit with seed history logic, cleanup utils, and add documentation.",
-      "id": "refactor-pg-toolkit"
+      "summary": "test publish",
+      "id": "strong-actors-agree"
     }
   ],
   "releases": [
     {
       "name": "@rfjs/pg-toolkit",
       "type": "patch",
-      "oldVersion": "0.0.4-alpha.0",
+      "oldVersion": "0.0.4",
       "changesets": [
-        "refactor-pg-toolkit"
+        "strong-actors-agree"
       ],
-      "newVersion": "0.0.4"
+      "newVersion": "0.0.5-alpha.0"
     }
   ],
   "preState": {
-    "mode": "exit",
+    "mode": "pre",
     "tag": "alpha",
     "initialVersions": {
       "api": "0.0.0",
@@ -34,12 +34,12 @@
       "@rfjs/orm-prisma": "0.0.0",
       "@rfjs/orm-typeorm": "0.0.0",
       "@repo/eslint-config": "0.0.0",
-      "@rfjs/pg-toolkit": "0.0.3",
+      "@rfjs/pg-toolkit": "0.0.4",
       "@repo/typescript-config": "0.0.0",
       "@repo/ui": "0.0.0"
     },
     "changesets": [
-      "refactor-pg-toolkit"
+      "strong-actors-agree"
     ]
   }
 }
