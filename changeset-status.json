@@ -15,15 +15,15 @@
     {
       "name": "@rfjs/pg-toolkit",
       "type": "patch",
-      "oldVersion": "0.0.4",
+      "oldVersion": "0.0.5-alpha.0",
       "changesets": [
         "strong-actors-agree"
       ],
-      "newVersion": "0.0.5-alpha.0"
+      "newVersion": "0.0.5"
     }
   ],
   "preState": {
-    "mode": "pre",
+    "mode": "exit",
     "tag": "alpha",
     "initialVersions": {
       "api": "0.0.0",
