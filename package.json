@@ -10,13 +10,13 @@
     "lint-staged": "turbo lint-staged",
     "typecheck": "turbo typecheck",
     "format": "prettier --write \"**/*.{ts,tsx,md}\"",
-    "commit": "npx cz",
-    "release": "npx standard-version",
-    "changeset:add": "npx changeset",
-    "changeset:status": "npx changeset status",
-    "changeset:version": "npx changeset version",
+    "commit": "pnpm exec cz",
+    "release": "pnpm exec standard-version",
+    "changeset:add": "pnpm exec changeset",
+    "changeset:status": "pnpm exec changeset status",
+    "changeset:version": "pnpm exec changeset version",
     "prepare": "husky",
-    "preinstall": "npx -y only-allow pnpm"
+    "preinstall": "pnpm exec -y only-allow pnpm"
   },
   "config": {
     "commitizen": {
