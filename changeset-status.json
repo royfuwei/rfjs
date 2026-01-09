@@ -7,19 +7,30 @@
           "type": "patch"
         }
       ],
-      "summary": "test publish",
-      "id": "strong-actors-agree"
+      "summary": "test npm publish",
+      "id": "bumpy-cities-ask"
+    },
+    {
+      "releases": [
+        {
+          "name": "@rfjs/pg-toolkit",
+          "type": "patch"
+        }
+      ],
+      "summary": "test publish 2\\",
+      "id": "small-rockets-hammer"
     }
   ],
   "releases": [
     {
       "name": "@rfjs/pg-toolkit",
       "type": "patch",
-      "oldVersion": "0.0.5-alpha.0",
+      "oldVersion": "0.0.6-alpha.1",
       "changesets": [
-        "strong-actors-agree"
+        "bumpy-cities-ask",
+        "small-rockets-hammer"
       ],
-      "newVersion": "0.0.5"
+      "newVersion": "0.0.6"
     }
   ],
   "preState": {
@@ -34,12 +45,13 @@
       "@rfjs/orm-prisma": "0.0.0",
       "@rfjs/orm-typeorm": "0.0.0",
       "@repo/eslint-config": "0.0.0",
-      "@rfjs/pg-toolkit": "0.0.4",
+      "@rfjs/pg-toolkit": "0.0.5",
       "@repo/typescript-config": "0.0.0",
       "@repo/ui": "0.0.0"
     },
     "changesets": [
-      "strong-actors-agree"
+      "bumpy-cities-ask",
+      "small-rockets-hammer"
     ]
   }
 }

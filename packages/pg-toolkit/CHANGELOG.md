@@ -1,5 +1,24 @@
 # @rfjs/pg-toolkit
 
+## 0.0.6
+
+### Patch Changes
+
+- 0438374: test npm publish
+- 7a03432: test publish 2\
+
+## 0.0.6-alpha.1
+
+### Patch Changes
+
+- 7a03432: test publish 2\
+
+## 0.0.6-alpha.0
+
+### Patch Changes
+
+- 0438374: test npm publish
+
 ## 0.0.5
 
 ### Patch Changes
