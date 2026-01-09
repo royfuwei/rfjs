@@ -16,7 +16,7 @@
     "changeset:status": "pnpm exec changeset status",
     "changeset:version": "pnpm exec changeset version",
     "prepare": "husky",
-    "preinstall": "pnpm exec -y only-allow pnpm"
+    "preinstall": "npx -y only-allow pnpm"
   },
   "config": {
     "commitizen": {
