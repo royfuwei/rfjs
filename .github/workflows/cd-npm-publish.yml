@@ -19,6 +19,7 @@ jobs:
     runs-on: ubuntu-latest
     outputs:
       channel: ${{ steps.ch.outputs.channel }}
+    # 只有合併成功、且來自同 repo 的特定 release 分支才執行
     if: >
       github.event.pull_request.merged == true &&
       github.event.pull_request.head.repo.full_name == github.repository &&
@@ -33,25 +34,12 @@ jobs:
         id: ch
         shell: bash
         run: |
-          set -euo pipefail
-          HEAD="${{ github.event.pull_request.head.ref }}"  # release/stable|release/alpha|release/beta|release/rc
-
+          HEAD="${{ github.event.pull_request.head.ref }}"
           if [ "$HEAD" = "release/stable" ]; then
-            CHANNEL="stable"
+            echo "channel=stable" >> "$GITHUB_OUTPUT"
           else
-            CHANNEL="${HEAD#release/}"  # alpha|beta|rc
+            echo "channel=${HEAD#release/}" >> "$GITHUB_OUTPUT"
           fi
-
-          case "$CHANNEL" in
-            stable|alpha|beta|rc)
-              echo "channel=$CHANNEL" >> "$GITHUB_OUTPUT"
-              echo "Resolved: head=$HEAD channel=$CHANNEL"
-              ;;
-            *)
-              echo "❌ Unsupported channel: $CHANNEL"
-              exit 1
-              ;;
-          esac
 
   publish:
     needs: resolve
@@ -62,9 +50,5 @@ jobs:
       NPM_TOKEN: ${{ secrets.NPM_TOKEN }}
     with:
       ref: npm_publish
-      channel: ${{ needs.resolve.outputs.channel }} # stable|alpha|beta|rc
+      channel: ${{ needs.resolve.outputs.channel }}
       node_version: 20.x
-      build_task: build
-      run_tests: false
-      # publish-only 預設 actor，不用傳；想改 bot 才傳
-      # git_identity_mode: actor
