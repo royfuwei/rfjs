@@ -12,28 +12,17 @@ permissions:
     contents: write
     pull-requests: write
 
-concurrency:
-    group: version-${{ github.event.pull_request.base.ref }}
-    cancel-in-progress: false
-
 jobs:
     resolve:
         runs-on: ubuntu-latest
         outputs:
             channel: ${{ steps.ch.outputs.channel }}
-        if: >
-            github.event.pull_request.merged == true &&
-            github.event.pull_request.head.repo.full_name == github.repository
+        if: github.event.pull_request.merged == true
         steps:
-            - name: Resolve channel from base ref
-              id: ch
-              shell: bash
+            - id: ch
               run: |
-                  set -euo pipefail
-                  REF="${{ github.event.pull_request.base.ref }}"  # release/alpha|beta|rc
-                  CHANNEL="${REF#release/}"                        # alpha|beta|rc
-                  echo "channel=$CHANNEL" >> "$GITHUB_OUTPUT"
-                  echo "Resolved: ref=$REF channel=$CHANNEL"
+                  REF="${{ github.event.pull_request.base.ref }}"
+                  echo "channel=${REF#release/}" >> "$GITHUB_OUTPUT"
 
     version:
         needs: resolve
@@ -41,8 +30,5 @@ jobs:
         secrets:
             GIT_TOKEN: ${{ secrets.GIT_TOKEN }}
         with:
-            ref: ${{ github.event.pull_request.base.ref }} # release/alpha|beta|rc
-            channel: ${{ needs.resolve.outputs.channel }} # alpha|beta|rc
-            node_version: 20.x
-            # 可選：預設 bot，不用傳；想改 actor 才傳
-            # git_identity_mode: bot
+            ref: ${{ github.event.pull_request.base.ref }}
+            channel: ${{ needs.resolve.outputs.channel }}
