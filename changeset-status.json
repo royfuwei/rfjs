@@ -7,19 +7,39 @@
           "type": "patch"
         }
       ],
-      "summary": "test publish pg-toolkit",
-      "id": "polite-dryers-cut"
+      "summary": "Refactor: enhance pg-toolkit with seed history logic, cleanup utils, and add documentation.",
+      "id": "refactor-pg-toolkit"
     }
   ],
   "releases": [
     {
       "name": "@rfjs/pg-toolkit",
       "type": "patch",
-      "oldVersion": "0.0.2",
+      "oldVersion": "0.0.3",
       "changesets": [
-        "polite-dryers-cut"
+        "refactor-pg-toolkit"
       ],
-      "newVersion": "0.0.3"
+      "newVersion": "0.0.4-alpha.0"
     }
-  ]
+  ],
+  "preState": {
+    "mode": "pre",
+    "tag": "alpha",
+    "initialVersions": {
+      "api": "0.0.0",
+      "orm-app": "0.0.0",
+      "web": "0.1.0",
+      "@rfjs/orm-drizzle": "0.0.0",
+      "@rfjs/orm-kysely": "0.0.0",
+      "@rfjs/orm-prisma": "0.0.0",
+      "@rfjs/orm-typeorm": "0.0.0",
+      "@repo/eslint-config": "0.0.0",
+      "@rfjs/pg-toolkit": "0.0.3",
+      "@repo/typescript-config": "0.0.0",
+      "@repo/ui": "0.0.0"
+    },
+    "changesets": [
+      "refactor-pg-toolkit"
+    ]
+  }
 }
