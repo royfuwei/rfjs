@@ -1,38 +1,46 @@
-pg-bootstrap
-===
+# @packages/pg-toolkit
 
-This project is a `royfuwei/start-ts-templates#main/templates/lib-tsdown` template for creating a new project using the [start-ts-by](https://www.npmjs.com/package/start-ts-by) CLI.
+A utility toolkit for PostgreSQL, designed to share common functionality and management scripts across different ORMs (Drizzle, Prisma, Kysely, TypeORM).
 
-## Getting Started
+## Features
+
+### Admin
+Provides database-level management functions, useful for CI/CD or environment initialization.
+- `ensureSeedHistoryTable`: Creates and manages a seed execution history table (`__seed_history`).
+- `checkSeedExecuted`: Checks if a specific seed has already been executed.
+- `recordSeedExecution`: Records the execution status of a seed.
+- `checkAndCreateDB`: Checks and automatically creates the database.
+- `checkAndCreateSchema`: Checks and automatically creates Schemas.
+
+### Pure
+Utility functions that do not depend on database connections.
+- `getConnectionStringInfo`: Parses Connection Strings, handling logic for `schema` parameters and merging `search_path` options.
+
+## Installation
 
 ```bash
-# 1. Install dependencies
-npm install
-## or pnpm
-pnpm install
-# 2. Run the project
-npm run dev
-# 3. Build the project
-npm run build
-# 4. Run tests
-npm run test
-# 5. Run lint
-npm run lint
+npm install @rfjs/pg-toolkit
+# or
+pnpm add @rfjs/pg-toolkit
 ```
 
-## Release
-```bash
-# 1. Release the project
-npx standard-version
-## or
-npm run release
-# dry run
-npm run release -- --dry-run
+## Usage Example
 
-# 2. Release the project with version
-npm run release -- --version 1.0.0
+### Managing Seed History
+
+```typescript
+import { ensureSeedHistoryTable, checkSeedExecuted, recordSeedExecution } from '@rfjs/pg-toolkit/admin';
+import { Client } from 'pg';
+
+const client = new Client(process.env.DATABASE_URL);
+await client.connect();
+
+// Ensure history table exists
+await ensureSeedHistoryTable(client);
+
+// Check and execute
+if (!await checkSeedExecuted(client, 'init_data')) {
+  // await runMySeed();
+  await recordSeedExecution(client, 'init_data');
+}
 ```
-
-## Reference
-- [Original README](./START_BY_README.md)
-  
