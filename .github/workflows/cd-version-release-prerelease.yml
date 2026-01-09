@@ -1,9 +1,11 @@
-name: Version (release/* prerelease channels)
+name: Version (prerelease branches)
 
 on:
     pull_request_target:
         branches:
-            - "release/*"
+            - release/alpha
+            - release/beta
+            - release/rc
         types: [closed]
 
 permissions:
@@ -21,26 +23,20 @@ jobs:
             channel: ${{ steps.ch.outputs.channel }}
         if: >
             github.event.pull_request.merged == true &&
-            github.event.pull_request.head.repo.full_name == github.repository &&
-            (
-              github.event.pull_request.base.ref == 'release/alpha' ||
-              github.event.pull_request.base.ref == 'release/beta'  ||
-              github.event.pull_request.base.ref == 'release/rc'
-            )
+            github.event.pull_request.head.repo.full_name == github.repository
         steps:
             - name: Resolve channel from base ref
               id: ch
               shell: bash
               run: |
                   set -euo pipefail
-                  REF="${{ github.event.pull_request.base.ref }}"  # e.g. release/alpha
-                  CHANNEL="${REF#release/}"                        # => alpha
+                  REF="${{ github.event.pull_request.base.ref }}"  # release/alpha|beta|rc
+                  CHANNEL="${REF#release/}"                        # alpha|beta|rc
                   echo "channel=$CHANNEL" >> "$GITHUB_OUTPUT"
                   echo "Resolved: ref=$REF channel=$CHANNEL"
 
     version:
         needs: resolve
-        if: needs.resolve.outputs.channel != ''
         uses: royfuwei/rf-devops/.github/workflows/_changesets-version-channel.yml@main
         secrets:
             GIT_TOKEN: ${{ secrets.GIT_TOKEN }}
@@ -48,3 +44,5 @@ jobs:
             ref: ${{ github.event.pull_request.base.ref }} # release/alpha|beta|rc
             channel: ${{ needs.resolve.outputs.channel }} # alpha|beta|rc
             node_version: 20.x
+            # 可選：預設 bot，不用傳；想改 actor 才傳
+            # git_identity_mode: bot

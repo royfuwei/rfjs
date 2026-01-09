@@ -1,8 +1,8 @@
-name: Version (release)
+name: Version (release/stable)
 
 on:
     pull_request_target:
-        branches: [release]
+        branches: [release/stable]
         types: [closed]
 
 permissions:
@@ -10,7 +10,7 @@ permissions:
     pull-requests: write
 
 concurrency:
-    group: version-release
+    group: version-release-stable
     cancel-in-progress: false
 
 jobs:
@@ -22,6 +22,8 @@ jobs:
         secrets:
             GIT_TOKEN: ${{ secrets.GIT_TOKEN }}
         with:
-            ref: release
+            ref: release/stable
             channel: stable
             node_version: 20.x
+            # 可選：預設 bot，不用傳；想改 actor 才傳
+            # git_identity_mode: bot

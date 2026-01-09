@@ -23,9 +23,9 @@ jobs:
       github.event.pull_request.merged == true &&
       github.event.pull_request.head.repo.full_name == github.repository &&
       (
-        github.event.pull_request.head.ref == 'release' ||
-        github.event.pull_request.head.ref == 'release/alpha' ||
-        github.event.pull_request.head.ref == 'release/beta'  ||
+        github.event.pull_request.head.ref == 'release/stable' ||
+        github.event.pull_request.head.ref == 'release/alpha'  ||
+        github.event.pull_request.head.ref == 'release/beta'   ||
         github.event.pull_request.head.ref == 'release/rc'
       )
     steps:
@@ -34,17 +34,24 @@ jobs:
         shell: bash
         run: |
           set -euo pipefail
-          HEAD="${{ github.event.pull_request.head.ref }}"   # release OR release/alpha|beta|rc
+          HEAD="${{ github.event.pull_request.head.ref }}"  # release/stable|release/alpha|release/beta|release/rc
 
-          if [ "$HEAD" = "release" ]; then
+          if [ "$HEAD" = "release/stable" ]; then
             CHANNEL="stable"
           else
-            # strip "release/" prefix
-            CHANNEL="${HEAD#release/}"
+            CHANNEL="${HEAD#release/}"  # alpha|beta|rc
           fi
 
-          echo "channel=$CHANNEL" >> "$GITHUB_OUTPUT"
-          echo "Resolved: head=$HEAD channel=$CHANNEL"
+          case "$CHANNEL" in
+            stable|alpha|beta|rc)
+              echo "channel=$CHANNEL" >> "$GITHUB_OUTPUT"
+              echo "Resolved: head=$HEAD channel=$CHANNEL"
+              ;;
+            *)
+              echo "❌ Unsupported channel: $CHANNEL"
+              exit 1
+              ;;
+          esac
 
   publish:
     needs: resolve
@@ -58,3 +65,6 @@ jobs:
       channel: ${{ needs.resolve.outputs.channel }} # stable|alpha|beta|rc
       node_version: 20.x
       build_task: build
+      run_tests: false
+      # publish-only 預設 actor，不用傳；想改 bot 才傳
+      # git_identity_mode: actor
