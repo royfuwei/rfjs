@@ -1,0 +1,60 @@
+name: CD NPM Publish
+
+on:
+  pull_request_target:
+    branches: [npm_publish]
+    types: [closed]
+
+permissions:
+  contents: write
+  pull-requests: write
+  id-token: write
+
+concurrency:
+  group: npm-publish
+  cancel-in-progress: false
+
+jobs:
+  resolve:
+    runs-on: ubuntu-latest
+    outputs:
+      channel: ${{ steps.ch.outputs.channel }}
+    if: >
+      github.event.pull_request.merged == true &&
+      github.event.pull_request.head.repo.full_name == github.repository &&
+      (
+        github.event.pull_request.head.ref == 'release' ||
+        github.event.pull_request.head.ref == 'release/alpha' ||
+        github.event.pull_request.head.ref == 'release/beta'  ||
+        github.event.pull_request.head.ref == 'release/rc'
+      )
+    steps:
+      - name: Resolve channel from head ref
+        id: ch
+        shell: bash
+        run: |
+          set -euo pipefail
+          HEAD="${{ github.event.pull_request.head.ref }}"   # release OR release/alpha|beta|rc
+
+          if [ "$HEAD" = "release" ]; then
+            CHANNEL="stable"
+          else
+            # strip "release/" prefix
+            CHANNEL="${HEAD#release/}"
+          fi
+
+          echo "channel=$CHANNEL" >> "$GITHUB_OUTPUT"
+          echo "Resolved: head=$HEAD channel=$CHANNEL"
+
+  publish:
+    needs: resolve
+    if: needs.resolve.outputs.channel != ''
+    uses: royfuwei/rf-devops/.github/workflows/_changesets-publish-only.yml@main
+    secrets:
+      GIT_TOKEN: ${{ secrets.GIT_TOKEN }}
+      NPM_TOKEN: ${{ secrets.NPM_TOKEN }}
+    with:
+      ref: npm_publish
+      channel: ${{ needs.resolve.outputs.channel }} # stable|alpha|beta|rc
+      node_version: 20.x
+      build_task: build
