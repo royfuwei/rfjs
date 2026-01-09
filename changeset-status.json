@@ -7,19 +7,19 @@
           "type": "patch"
         }
       ],
-      "summary": "test npm publish",
-      "id": "bumpy-cities-ask"
+      "summary": "test publish 2\\",
+      "id": "small-rockets-hammer"
     }
   ],
   "releases": [
     {
       "name": "@rfjs/pg-toolkit",
       "type": "patch",
-      "oldVersion": "0.0.5",
+      "oldVersion": "0.0.6-alpha.0",
       "changesets": [
-        "bumpy-cities-ask"
+        "small-rockets-hammer"
       ],
-      "newVersion": "0.0.6-alpha.0"
+      "newVersion": "0.0.6-alpha.1"
     }
   ],
   "preState": {
@@ -39,7 +39,8 @@
       "@repo/ui": "0.0.0"
     },
     "changesets": [
-      "bumpy-cities-ask"
+      "bumpy-cities-ask",
+      "small-rockets-hammer"
     ]
   }
 }
