@@ -3,38 +3,40 @@
     {
       "releases": [
         {
-          "name": "@rfjs/pg-toolkit",
+          "name": "api",
           "type": "patch"
-        }
-      ],
-      "summary": "test npm publish",
-      "id": "bumpy-cities-ask"
-    },
-    {
-      "releases": [
+        },
         {
-          "name": "@rfjs/pg-toolkit",
+          "name": "orm-app",
           "type": "patch"
         }
       ],
-      "summary": "test publish 2\\",
-      "id": "small-rockets-hammer"
+      "summary": "test docker build",
+      "id": "four-shirts-joke"
     }
   ],
   "releases": [
     {
-      "name": "@rfjs/pg-toolkit",
+      "name": "api",
       "type": "patch",
-      "oldVersion": "0.0.6-alpha.1",
+      "oldVersion": "0.0.0",
       "changesets": [
-        "bumpy-cities-ask",
-        "small-rockets-hammer"
+        "four-shirts-joke"
       ],
-      "newVersion": "0.0.6"
+      "newVersion": "0.0.1-alpha.0"
+    },
+    {
+      "name": "orm-app",
+      "type": "patch",
+      "oldVersion": "0.0.0",
+      "changesets": [
+        "four-shirts-joke"
+      ],
+      "newVersion": "0.0.1-alpha.0"
     }
   ],
   "preState": {
-    "mode": "exit",
+    "mode": "pre",
     "tag": "alpha",
     "initialVersions": {
       "api": "0.0.0",
@@ -45,13 +47,12 @@
       "@rfjs/orm-prisma": "0.0.0",
       "@rfjs/orm-typeorm": "0.0.0",
       "@repo/eslint-config": "0.0.0",
-      "@rfjs/pg-toolkit": "0.0.5",
+      "@rfjs/pg-toolkit": "0.0.6",
       "@repo/typescript-config": "0.0.0",
       "@repo/ui": "0.0.0"
     },
     "changesets": [
-      "bumpy-cities-ask",
-      "small-rockets-hammer"
+      "four-shirts-joke"
     ]
   }
 }
