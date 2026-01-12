@@ -5,34 +5,21 @@
         {
           "name": "api",
           "type": "patch"
-        },
-        {
-          "name": "orm-app",
-          "type": "patch"
         }
       ],
-      "summary": "test docker build",
-      "id": "four-shirts-joke"
+      "summary": "update package scripts to remove recursive flag and release command",
+      "id": "funky-things-occur"
     }
   ],
   "releases": [
     {
       "name": "api",
       "type": "patch",
-      "oldVersion": "0.0.0",
+      "oldVersion": "0.0.1-alpha.0",
       "changesets": [
-        "four-shirts-joke"
+        "funky-things-occur"
       ],
-      "newVersion": "0.0.1-alpha.0"
-    },
-    {
-      "name": "orm-app",
-      "type": "patch",
-      "oldVersion": "0.0.0",
-      "changesets": [
-        "four-shirts-joke"
-      ],
-      "newVersion": "0.0.1-alpha.0"
+      "newVersion": "0.0.1-alpha.1"
     }
   ],
   "preState": {
@@ -52,7 +39,8 @@
       "@repo/ui": "0.0.0"
     },
     "changesets": [
-      "four-shirts-joke"
+      "four-shirts-joke",
+      "funky-things-occur"
     ]
   }
 }
