@@ -3,21 +3,21 @@
     {
       "releases": [
         {
-          "name": "api",
+          "name": "orm-app",
           "type": "patch"
         }
       ],
-      "summary": "update package scripts to remove recursive flag and release command",
-      "id": "funky-things-occur"
+      "summary": "- chore(libs): refine build scripts and remove unused release command\n- chore(apps): update package scripts to remove recursive flag and release command",
+      "id": "funny-eyes-lick"
     }
   ],
   "releases": [
     {
-      "name": "api",
+      "name": "orm-app",
       "type": "patch",
       "oldVersion": "0.0.1-alpha.0",
       "changesets": [
-        "funky-things-occur"
+        "funny-eyes-lick"
       ],
       "newVersion": "0.0.1-alpha.1"
     }
@@ -40,7 +40,8 @@
     },
     "changesets": [
       "four-shirts-joke",
-      "funky-things-occur"
+      "funky-things-occur",
+      "funny-eyes-lick"
     ]
   }
 }
