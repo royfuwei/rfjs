@@ -26,10 +26,10 @@
     }
   },
   "scripts": {
-    "clean": "pnpm -r --parallel clean:dist clean:types",
+    "clean": "pnpm --parallel clean:dist clean:types",
     "clean:types": "pnpm exec rimraf ./types",
     "clean:dist": "pnpm exec rimraf ./dist",
-    "dev": "pnpm -r --parallel dev:tsdown typecheck:watch",
+    "dev": "pnpm --parallel dev:tsdown typecheck:watch",
     "dev:tsdown": "npm run clean && tsdown --config-loader unrun --watch",
     "build": "npm run build:tsdown",
     "build:tsdown": "npm run clean && tsdown --config-loader unrun",
