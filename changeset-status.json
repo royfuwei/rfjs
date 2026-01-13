@@ -3,23 +3,23 @@
     {
       "releases": [
         {
-          "name": "orm-app",
+          "name": "api",
           "type": "patch"
         }
       ],
-      "summary": "- chore(libs): refine build scripts and remove unused release command\n- chore(apps): update package scripts to remove recursive flag and release command",
-      "id": "funny-eyes-lick"
+      "summary": "test deploy local",
+      "id": "afraid-turkeys-shave"
     }
   ],
   "releases": [
     {
-      "name": "orm-app",
+      "name": "api",
       "type": "patch",
-      "oldVersion": "0.0.1-alpha.0",
+      "oldVersion": "0.0.1-alpha.1",
       "changesets": [
-        "funny-eyes-lick"
+        "afraid-turkeys-shave"
       ],
-      "newVersion": "0.0.1-alpha.1"
+      "newVersion": "0.0.1-alpha.2"
     }
   ],
   "preState": {
@@ -39,6 +39,7 @@
       "@repo/ui": "0.0.0"
     },
     "changesets": [
+      "afraid-turkeys-shave",
       "four-shirts-joke",
       "funky-things-occur",
       "funny-eyes-lick"
