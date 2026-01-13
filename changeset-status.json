@@ -3,23 +3,49 @@
     {
       "releases": [
         {
+          "name": "api",
+          "type": "patch"
+        },
+        {
           "name": "orm-app",
+          "type": "patch"
+        },
+        {
+          "name": "@rfjs/pg-toolkit",
           "type": "patch"
         }
       ],
-      "summary": "test deploy local",
-      "id": "many-zebras-stop"
+      "summary": "test release",
+      "id": "social-trains-chew"
     }
   ],
   "releases": [
     {
+      "name": "api",
+      "type": "patch",
+      "oldVersion": "0.0.1-alpha.2",
+      "changesets": [
+        "social-trains-chew"
+      ],
+      "newVersion": "0.0.1-alpha.3"
+    },
+    {
       "name": "orm-app",
       "type": "patch",
-      "oldVersion": "0.0.1-alpha.1",
+      "oldVersion": "0.0.1-alpha.2",
       "changesets": [
-        "many-zebras-stop"
+        "social-trains-chew"
       ],
-      "newVersion": "0.0.1-alpha.2"
+      "newVersion": "0.0.1-alpha.3"
+    },
+    {
+      "name": "@rfjs/pg-toolkit",
+      "type": "patch",
+      "oldVersion": "0.0.6",
+      "changesets": [
+        "social-trains-chew"
+      ],
+      "newVersion": "0.0.7-alpha.0"
     }
   ],
   "preState": {
@@ -43,7 +69,8 @@
       "four-shirts-joke",
       "funky-things-occur",
       "funny-eyes-lick",
-      "many-zebras-stop"
+      "many-zebras-stop",
+      "social-trains-chew"
     ]
   }
 }

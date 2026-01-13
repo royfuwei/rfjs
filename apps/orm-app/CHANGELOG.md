@@ -1,5 +1,11 @@
 # orm-app
 
+## 0.0.1-alpha.3
+
+### Patch Changes
+
+- beed96d: test release
+
 ## 0.0.1-alpha.2
 
 ### Patch Changes
