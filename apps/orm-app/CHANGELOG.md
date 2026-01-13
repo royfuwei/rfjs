@@ -1,5 +1,11 @@
 # orm-app
 
+## 0.0.1-alpha.2
+
+### Patch Changes
+
+- a616944: test deploy local
+
 ## 0.0.1-alpha.1
 
 ### Patch Changes

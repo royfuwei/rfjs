@@ -3,21 +3,21 @@
     {
       "releases": [
         {
-          "name": "api",
+          "name": "orm-app",
           "type": "patch"
         }
       ],
       "summary": "test deploy local",
-      "id": "afraid-turkeys-shave"
+      "id": "many-zebras-stop"
     }
   ],
   "releases": [
     {
-      "name": "api",
+      "name": "orm-app",
       "type": "patch",
       "oldVersion": "0.0.1-alpha.1",
       "changesets": [
-        "afraid-turkeys-shave"
+        "many-zebras-stop"
       ],
       "newVersion": "0.0.1-alpha.2"
     }
@@ -42,7 +42,8 @@
       "afraid-turkeys-shave",
       "four-shirts-joke",
       "funky-things-occur",
-      "funny-eyes-lick"
+      "funny-eyes-lick",
+      "many-zebras-stop"
     ]
   }
 }
