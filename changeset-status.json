@@ -3,38 +3,53 @@
     {
       "releases": [
         {
-          "name": "@rfjs/pg-toolkit",
+          "name": "api",
           "type": "patch"
-        }
-      ],
-      "summary": "test npm publish",
-      "id": "bumpy-cities-ask"
-    },
-    {
-      "releases": [
+        },
+        {
+          "name": "orm-app",
+          "type": "patch"
+        },
         {
           "name": "@rfjs/pg-toolkit",
           "type": "patch"
         }
       ],
-      "summary": "test publish 2\\",
-      "id": "small-rockets-hammer"
+      "summary": "test release",
+      "id": "social-trains-chew"
     }
   ],
   "releases": [
     {
+      "name": "api",
+      "type": "patch",
+      "oldVersion": "0.0.1-alpha.2",
+      "changesets": [
+        "social-trains-chew"
+      ],
+      "newVersion": "0.0.1-alpha.3"
+    },
+    {
+      "name": "orm-app",
+      "type": "patch",
+      "oldVersion": "0.0.1-alpha.2",
+      "changesets": [
+        "social-trains-chew"
+      ],
+      "newVersion": "0.0.1-alpha.3"
+    },
+    {
       "name": "@rfjs/pg-toolkit",
       "type": "patch",
-      "oldVersion": "0.0.6-alpha.1",
+      "oldVersion": "0.0.6",
       "changesets": [
-        "bumpy-cities-ask",
-        "small-rockets-hammer"
+        "social-trains-chew"
       ],
-      "newVersion": "0.0.6"
+      "newVersion": "0.0.7-alpha.0"
     }
   ],
   "preState": {
-    "mode": "exit",
+    "mode": "pre",
     "tag": "alpha",
     "initialVersions": {
       "api": "0.0.0",
@@ -45,13 +60,17 @@
       "@rfjs/orm-prisma": "0.0.0",
       "@rfjs/orm-typeorm": "0.0.0",
       "@repo/eslint-config": "0.0.0",
-      "@rfjs/pg-toolkit": "0.0.5",
+      "@rfjs/pg-toolkit": "0.0.6",
       "@repo/typescript-config": "0.0.0",
       "@repo/ui": "0.0.0"
     },
     "changesets": [
-      "bumpy-cities-ask",
-      "small-rockets-hammer"
+      "afraid-turkeys-shave",
+      "four-shirts-joke",
+      "funky-things-occur",
+      "funny-eyes-lick",
+      "many-zebras-stop",
+      "social-trains-chew"
     ]
   }
 }

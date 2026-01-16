@@ -1,5 +1,11 @@
 # @rfjs/pg-toolkit
 
+## 0.0.7-alpha.0
+
+### Patch Changes
+
+- beed96d: test release
+
 ## 0.0.6
 
 ### Patch Changes
