@@ -48,7 +48,7 @@
     }
   },
   "keywords": [],
-  "author": "royfuwei",
+  "author": "Roy Chuang",
   "license": "ISC",
   "engines": {
     "node": ">=18",
