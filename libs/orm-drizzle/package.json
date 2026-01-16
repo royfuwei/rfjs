@@ -7,10 +7,10 @@
   "types": "dist/index.d.ts",
   "private": true,
   "scripts": {
-    "clean": "pnpm -r --parallel clean:dist clean:types",
+    "clean": "pnpm --parallel clean:dist clean:types",
     "clean:types": "pnpm exec rimraf ./types",
     "clean:dist": "pnpm exec rimraf ./dist",
-    "dev": "pnpm -r --parallel dev:tsdown typecheck:watch",
+    "dev": "pnpm --parallel dev:tsdown typecheck:watch",
     "dev:tsdown": "npm run clean && tsdown --config-loader unrun --watch",
     "build": "npm run build:tsdown",
     "build:tsdown": "npm run clean && tsdown --config-loader unrun",
@@ -30,7 +30,6 @@
     "vitest:ui": "vitest --passWithNoTests --ui",
     "vitest:e2e": "vitest --config vitest.config.e2e.mts --passWithNoTests",
     "vitest:e2e:ui": "vitest --config vitest.config.e2e.mts --passWithNoTests --ui",
-    "release": "pnpm exec standard-version",
     "commit": "pnpm exec cz",
     "docs:dev": "vitepress dev docs",
     "docs:build": "vitepress build docs",
@@ -49,7 +48,7 @@
     }
   },
   "keywords": [],
-  "author": "royfuwei",
+  "author": "Roy Chuang",
   "license": "ISC",
   "engines": {
     "node": ">=18",

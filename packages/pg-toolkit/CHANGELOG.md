@@ -1,5 +1,22 @@
 # @rfjs/pg-toolkit
 
+## 0.0.7
+
+### Patch Changes
+
+- 256c4c7: chore(pkg): Update author and references in pg-toolkit
+
+  - Update package author to 'Roy Chuang'.
+  - Update organization references in documentation to 'royfw'.
+
+- beed96d: test release
+
+## 0.0.7-alpha.0
+
+### Patch Changes
+
+- beed96d: test release
+
 ## 0.0.6
 
 ### Patch Changes

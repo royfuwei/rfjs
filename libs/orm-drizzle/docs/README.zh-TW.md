@@ -43,7 +43,7 @@
 
 ```bash
 # 從範本建立
-degit royfuwei/start-ts-templates/templates/lib-tsdown my-library
+degit royfw/start-ts-templates/templates/lib-tsdown my-library
 cd my-library
 
 # 安裝依賴
@@ -448,4 +448,4 @@ ISC
 
 ---
 
-**使用 [start-ts-templates](https://github.com/royfuwei/start-ts-templates) 建立**
+**使用 [start-ts-templates](https://github.com/royfw/start-ts-templates) 建立**

@@ -33,7 +33,8 @@ COPY $TURBO_APP_PATH/package.json $TURBO_APP_PATH/
 COPY packages ./packages
 
 # 安裝整個 monorepo 的依賴（dev + prod）
-RUN pnpm install --frozen-lockfile
+RUN --mount=type=secret,id=npmrc,target=/root/.npmrc \
+  pnpm install --frozen-lockfile
 
 ############################
 # 2. Build ONLY $TURBO_APP_PATH
