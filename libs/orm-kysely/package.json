@@ -51,7 +51,7 @@
     }
   },
   "keywords": [],
-  "author": "royfuwei",
+  "author": "Roy Chuang",
   "license": "ISC",
   "devDependencies": {
     "@commitlint/cli": "^19.7.1",

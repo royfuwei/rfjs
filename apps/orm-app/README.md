@@ -1,7 +1,7 @@
 orm-app
 ===
 
-This project is a `royfuwei/start-ts-templates/templates/app-tsdown` template for creating a new project using the [start-ts-by](https://www.npmjs.com/package/start-ts-by) CLI.
+This project is a `royfw/start-ts-templates/templates/app-tsdown` template for creating a new project using the [start-ts-by](https://www.npmjs.com/package/start-ts-by) CLI.
 
 ## Getting Started
 

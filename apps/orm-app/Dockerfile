@@ -41,7 +41,8 @@ COPY --from=prune /app/out/json/ ./
 COPY --from=prune /app/out/pnpm-lock.yaml ./pnpm-lock.yaml
 
 # 🔴 關掉 scripts：避免 preinstall / prepare / husky 等在 Docker 裡跑
-RUN pnpm install --prod --frozen-lockfile --ignore-scripts
+RUN --mount=type=secret,id=npmrc,target=/root/.npmrc \
+  pnpm install --prod --frozen-lockfile --ignore-scripts
 
 #########################################
 # 3. build：裝 dev 相依 + build
@@ -53,7 +54,8 @@ COPY --from=prune /app/out/full/ ./
 COPY --from=prune /app/out/pnpm-lock.yaml ./pnpm-lock.yaml
 
 # 一樣關掉 scripts，build 不需要跑 husky 等
-RUN pnpm install --frozen-lockfile --ignore-scripts
+RUN --mount=type=secret,id=npmrc,target=/root/.npmrc \
+  pnpm install --frozen-lockfile --ignore-scripts
 
 ARG TURBO_SCOPE
 RUN pnpm turbo run build --filter=${TURBO_SCOPE}...
