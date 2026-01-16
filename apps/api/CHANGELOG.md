@@ -1,5 +1,15 @@
 # api
 
+## 0.0.1
+
+### Patch Changes
+
+- 7601042: test deploy local
+- f9e894d: test docker build
+- 80bd2f5: update package scripts to remove recursive flag and release command
+- be7f4f1: test release
+- beed96d: test release
+
 ## 0.0.1-alpha.3
 
 ### Patch Changes
