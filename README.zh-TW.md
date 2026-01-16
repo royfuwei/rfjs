@@ -1,7 +1,7 @@
 rfjs
 ===
 
-本專案是一個 `royfuwei/starter-turbo` 模板，用於使用 [start-ts-by](https://www.npmjs.com/package/start-ts-by) CLI 建立新專案。
+本專案是一個 `royfw/starter-turbo` 模板，用於使用 [start-ts-by](https://www.npmjs.com/package/start-ts-by) CLI 建立新專案。
 
 ## 快速開始
 
