@@ -1,6 +1,6 @@
 {
   "name": "orm-app",
-  "version": "0.0.1-alpha.3",
+  "version": "0.0.1",
   "description": "A project created by app-tsdown",
   "private": "true",
   "scripts": {
@@ -58,7 +58,7 @@
     }
   },
   "keywords": [],
-  "author": "royfuwei",
+  "author": "Roy Chuang",
   "license": "ISC",
   "engines": {
     "node": ">=18",

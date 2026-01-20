@@ -1,7 +1,7 @@
 api
 ===
 
-This project is a `royfuwei/starter-ts-fastify` template for creating a new project using the [start-ts-by](https://www.npmjs.com/package/start-ts-by) CLI.
+This project is a `royfw/starter-ts-fastify` template for creating a new project using the [start-ts-by](https://www.npmjs.com/package/start-ts-by) CLI.
 
 ## Getting Started
 
