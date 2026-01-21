@@ -1,5 +1,11 @@
 # api
 
+## 0.0.2-alpha.3
+
+### Patch Changes
+
+- 811b096: test ci
+
 ## 0.0.2-alpha.2
 
 ### Patch Changes
