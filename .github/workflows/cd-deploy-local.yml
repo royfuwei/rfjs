@@ -17,5 +17,6 @@ jobs:
     with:
       ref: deploy_local
       environment: royfw-dev
-      namespace: rfjs
+      project: rfjs
+      namespace: rfjs-dev
     secrets: inherit # 自動傳遞所有的 HARBOR_*, KUBE_CONFIG, ENV_* 等 Secrets
