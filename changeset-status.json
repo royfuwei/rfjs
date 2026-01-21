@@ -5,34 +5,21 @@
         {
           "name": "api",
           "type": "patch"
-        },
-        {
-          "name": "orm-app",
-          "type": "patch"
         }
       ],
       "summary": "test deploy",
-      "id": "salty-drinks-fry"
+      "id": "grumpy-baboons-think"
     }
   ],
   "releases": [
     {
       "name": "api",
       "type": "patch",
-      "oldVersion": "0.0.1",
+      "oldVersion": "0.0.2-alpha.0",
       "changesets": [
-        "salty-drinks-fry"
+        "grumpy-baboons-think"
       ],
-      "newVersion": "0.0.2-alpha.0"
-    },
-    {
-      "name": "orm-app",
-      "type": "patch",
-      "oldVersion": "0.0.1",
-      "changesets": [
-        "salty-drinks-fry"
-      ],
-      "newVersion": "0.0.2-alpha.0"
+      "newVersion": "0.0.2-alpha.1"
     }
   ],
   "preState": {
@@ -52,6 +39,7 @@
       "@repo/ui": "0.0.0"
     },
     "changesets": [
+      "grumpy-baboons-think",
       "salty-drinks-fry"
     ]
   }

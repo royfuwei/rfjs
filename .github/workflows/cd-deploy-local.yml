@@ -16,6 +16,6 @@ jobs:
     uses: royfw/rf-devops/.github/workflows/rfjs-deploy-k8s.yml@main
     with:
       ref: deploy_local
-      environment: k8s-royfw
+      environment: royfw-dev
       namespace: rfjs
     secrets: inherit # 自動傳遞所有的 HARBOR_*, KUBE_CONFIG, ENV_* 等 Secrets
