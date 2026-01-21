@@ -1,5 +1,11 @@
 # orm-app
 
+## 0.0.2-alpha.1
+
+### Patch Changes
+
+- 6212d61: test deploy
+
 ## 0.0.2-alpha.0
 
 ### Patch Changes
