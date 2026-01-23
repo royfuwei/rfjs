@@ -11,28 +11,28 @@
           "type": "patch"
         }
       ],
-      "summary": "test deploy",
-      "id": "tiny-birds-switch"
+      "summary": "test ci",
+      "id": "twelve-flowers-wave"
     }
   ],
   "releases": [
     {
       "name": "api",
       "type": "patch",
-      "oldVersion": "0.0.2-alpha.1",
+      "oldVersion": "0.0.2-alpha.2",
       "changesets": [
-        "tiny-birds-switch"
+        "twelve-flowers-wave"
       ],
-      "newVersion": "0.0.2-alpha.2"
+      "newVersion": "0.0.2-alpha.3"
     },
     {
       "name": "orm-app",
       "type": "patch",
-      "oldVersion": "0.0.2-alpha.0",
+      "oldVersion": "0.0.2-alpha.1",
       "changesets": [
-        "tiny-birds-switch"
+        "twelve-flowers-wave"
       ],
-      "newVersion": "0.0.2-alpha.1"
+      "newVersion": "0.0.2-alpha.2"
     }
   ],
   "preState": {
@@ -54,7 +54,8 @@
     "changesets": [
       "grumpy-baboons-think",
       "salty-drinks-fry",
-      "tiny-birds-switch"
+      "tiny-birds-switch",
+      "twelve-flowers-wave"
     ]
   }
 }

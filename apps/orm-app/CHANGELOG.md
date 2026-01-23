@@ -1,5 +1,11 @@
 # orm-app
 
+## 0.0.2-alpha.2
+
+### Patch Changes
+
+- 811b096: test ci
+
 ## 0.0.2-alpha.1
 
 ### Patch Changes
