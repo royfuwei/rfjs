@@ -1,5 +1,11 @@
 # api
 
+## 0.0.2-alpha.4
+
+### Patch Changes
+
+- 69fab66: test deploy
+
 ## 0.0.2-alpha.3
 
 ### Patch Changes
